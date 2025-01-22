@@ -1,0 +1,431 @@
+using System;
+using System.Text;
+using System.ComponentModel.Design.Serialization;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+namespace TSharp{
+    class Program{
+        static void Main(string[] args){
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+            Console.InputEncoding = System.Text.Encoding.Unicode;
+            bool showTree = false;
+            while(true){
+                Console.Write("T#>> ");
+                var line = Console.ReadLine();
+                if(line == "#çık"){
+                    return;
+                }
+                if(line == "#ağacıGöster"){
+                    showTree = !showTree;
+                    Console.WriteLine(showTree ? "Syntaxtree(sözdizimi ağacı) açıldı." : "Syntaxtree(sözdizimi ağacı) kapandı.");
+                    continue;
+                }
+                if(line == "#sil"){
+                    Console.Clear();
+                    continue;
+                }
+                if(line == "#silçık"){
+                    Console.Clear();
+                    return;
+                }
+                var syntaxTree = SyntaxTree.Parse(line);
+                var color = Console.ForegroundColor;
+                if(showTree){
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    PrettyPrint(syntaxTree.Root);
+                    Console.ForegroundColor = color;
+                }
+                
+                if(syntaxTree.Diagnostics.Any()){
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    foreach(var di in syntaxTree.Diagnostics){
+                        Console.WriteLine(di.ToString());
+                    }
+                    Console.ForegroundColor = color;
+                }else{
+                    var e = new Evalutor(syntaxTree.Root);
+                    var result = e.Evalute();
+                    Console.WriteLine(result);
+                }
+            }
+        }
+        
+        static void PrettyPrint(Node node,string indent="", bool islast = true){
+           
+            var marker = islast ? "│___" : "│―――";
+            
+            Console.Write(indent);
+            Console.Write(marker);
+            Console.Write(node.Kind);
+            if(node is Token t && t.Value != null){
+                Console.Write(" ");
+                Console.Write(t.Value);
+            }
+            Console.WriteLine();
+
+            indent+= islast ? "    " :  "│   ";
+            
+            var last = node.GetChildren().LastOrDefault();
+
+            foreach(var child in node.GetChildren()){
+                
+                PrettyPrint(child,indent, child == last);
+
+            }
+        }
+    }
+
+    class Token : Node{
+        public Token(TokenKind kind, int pos, string text, object value){
+            this.Kind = kind;
+            this.Pos = pos;
+            this.Text = text;
+            this.Value = value;
+        }
+
+        public override string ToString() {
+            if(Value!=null){
+                return string.Format("{0}:{1} ", Kind, Value);
+            }
+            return string.Format("{0} ", Kind);
+        }
+
+        public override TokenKind Kind { get; }
+        public int Pos { get; }
+        public string Text { get; }
+        public object Value { get; }
+
+        public override IEnumerable<Node> GetChildren(){
+            return Enumerable.Empty<Node>();
+        }
+    }
+
+    enum TokenKind{
+        
+        Int,
+        Float,
+        Plus,
+        Minus,
+        Multi,
+        Div,
+        LeftParan,
+        RightParan,
+        BadToken, //It's will return error 
+        EOF, //End Of File
+        NumberExpression,
+        BinaryExpression,
+        ParenExpression
+
+    }
+
+    class Lexer{
+        private readonly string _text;
+        private int _pos;
+
+        private List<string> _diagnotics = new List<string>();
+
+        public IEnumerable<string> Diagnotics => _diagnotics;
+        public Lexer(string text){
+            _text = text;
+        }
+
+        private char currentchar{
+            get{
+                if(_pos>=_text.Length){
+                    return '\0';
+                }
+                return _text[_pos];
+            }
+        }
+
+        private void Next(){
+            _pos++;
+        }
+
+        public Token NextToken(){
+            if(char.IsWhiteSpace(currentchar)){
+                while(char.IsWhiteSpace(currentchar)) Next();
+            }
+            if(_pos >= _text.Length){
+                return new Token(TokenKind.EOF ,_pos, "/0", null) ;
+            }
+            if(char.IsDigit(_text[_pos])){
+                var start = _pos;
+                TokenKind myKind = TokenKind.Int;
+                while(char.IsDigit(currentchar) || currentchar=='.'){
+                    if(currentchar=='.'){
+                        if(myKind==TokenKind.Float){
+                            _diagnotics.Add($"{_pos}.sırada fazladan {currentchar} bulunmakta.");
+                        }else{
+                            myKind=TokenKind.Float;
+                        }
+                    }
+                    Next();
+                }
+
+                var Length = _pos - start;
+                var text = _text.Substring(start, Length);
+                
+                if(myKind==TokenKind.Int){
+                    if(!int.TryParse(text, out int value)){
+                        _diagnotics.Add($"Numara {_text} Int32'de çözümlenemedi.");
+                    }
+                    return new Token(myKind, start, text, value);
+                }else{
+                    var value = float.Parse(text, CultureInfo.InvariantCulture.NumberFormat);
+                    return new Token(myKind, start, text, value);
+                }
+                
+                
+            }
+            
+            if(currentchar=='+') {
+                Next();
+                return new Token(TokenKind.Plus, _pos, "+", null);
+            }
+            if(currentchar=='-') { 
+                Next();
+                return new Token(TokenKind.Minus, _pos, "-", null); 
+            }
+            if(currentchar=='*'){ 
+                Next();
+                return new Token(TokenKind.Multi, _pos, "*", null);
+            }
+            if(currentchar=='/'){ 
+                Next();
+                return new Token(TokenKind.Div, _pos, "/", null);
+            }
+            if(currentchar=='('){ 
+                Next();
+                return new Token(TokenKind.LeftParan, _pos, "(", null);
+            }
+            if(currentchar==')'){ 
+                Next();
+                return new Token(TokenKind.RightParan, _pos, ")", null);
+            }
+            _diagnotics.Add($"İllegal karakter hatası: {_pos}.pozisyonda {currentchar}");
+            return new Token(TokenKind.BadToken, _pos++, _text.Substring(_pos-1, 1), null);
+        }
+    }
+
+
+    abstract class Node{
+        public abstract TokenKind Kind { get;}
+
+        public abstract IEnumerable<Node> GetChildren();
+    }
+
+    abstract class Expression : Node{
+
+    }
+
+    sealed class NumberExpression : Expression{
+        public NumberExpression(Token numberToken){
+            _numberToken = numberToken;
+        }
+
+        public override TokenKind Kind => TokenKind.NumberExpression;
+        public Token _numberToken { get; }
+        public override IEnumerable<Node> GetChildren() { yield return _numberToken;}
+    }
+
+    sealed class BinaryExpression : Expression{
+        public BinaryExpression(Expression left, Token opToken, Expression right){
+            _left = left;
+            _opToken = opToken;
+            _right = right;
+        }
+
+        public override TokenKind Kind => TokenKind.BinaryExpression;
+        public Expression _left { get; }
+        public Token _opToken { get; }
+        public Expression _right { get; }
+        public override IEnumerable<Node> GetChildren() { yield return _left; yield return _opToken; yield return _right; } 
+        
+    }
+
+    sealed class ParenExpression : Expression{
+        public Token OpenParen{get;}
+        public Expression Expression{get;}
+        public Token CloseParen{get;}
+
+        public ParenExpression(Token openParen, Expression expression, Token closeParen){
+            OpenParen = openParen;
+            Expression = expression;
+            CloseParen = closeParen;
+        }
+
+        public override TokenKind Kind => TokenKind.ParenExpression; 
+        public override IEnumerable<Node> GetChildren()
+        {
+            yield return OpenParen;
+            yield return Expression;
+            yield return CloseParen;
+        }
+    }
+
+    sealed class SyntaxTree{
+        public Expression Root;
+        public Token EOF;
+        public IReadOnlyList<string> Diagnostics; //I dont know what the fuck is IReadOnlyList but it is work
+        public SyntaxTree(IEnumerable<string> diagnostics,Expression root, Token eOF){
+            Root = root;
+            EOF = eOF;
+            Diagnostics = diagnostics.ToArray();
+        }
+
+        public static SyntaxTree Parse(string text){
+            var parser = new Parser(text);
+            return parser.Parse();
+        }
+
+    }
+    class Parser{ //TRUE
+        private readonly Token[] _tokens;
+        private int _position;
+        private List<string> _diagnostics = new List<string>();
+        public IEnumerable<string> Diagnostics => _diagnostics;
+
+        public Parser(string text) {
+            var tokens = new List<Token>();
+            var Lexer = new Lexer(text);
+            Token token;
+            do {
+                token = Lexer.NextToken();
+                if(token.Kind != TokenKind.BadToken){
+                    tokens.Add(token);
+                }
+            }while(token.Kind!=TokenKind.EOF);
+
+            _tokens = tokens.ToArray();
+            _diagnostics.AddRange(Lexer.Diagnotics);
+        }
+
+        private Token Peek(int offset){
+            var index = _position + offset;
+            if(index >= _tokens.Length) 
+                return _tokens[_tokens.Length-1];
+            
+            return _tokens[index];
+        }
+
+        private Token Current => Peek(0);
+
+        private Token NextToken(){
+            Token current = Current;
+            _position++;
+            return current;
+        }
+
+        private Token Match(TokenKind kind){ 
+            if(Current.Kind==kind){
+                return NextToken();
+            }
+            
+            _diagnostics.Add($"HATA: Beklenmeyen veri türü: {Current.Kind}, beklenen veri türü: '{kind}'");
+
+            return new Token(TokenKind.BadToken, _position, null, null);
+        }
+
+        private Token MatchForNums(TokenKind kind0, TokenKind kind1 ){ 
+            if(Current.Kind==kind0 || Current.Kind==kind1){
+                return NextToken();
+            }
+            
+            _diagnostics.Add($"HATA: Beklenmeyen veri türü: {Current.Kind}, beklenen veri türü: '{kind0}' veyahut {kind1}");
+
+            return new Token(TokenKind.BadToken, _position, null, null);
+        }
+
+        private Expression ParseExpression(){
+            return ParseTerm();
+        }
+        public SyntaxTree Parse(){
+            var expression = ParseTerm();
+            var eofToken = Match(TokenKind.EOF);
+            return new SyntaxTree(_diagnostics, expression, eofToken);
+        }
+
+        public Expression ParseTerm(){
+            var left = ParseFactor();
+
+            while(Current.Kind==TokenKind.Plus||Current.Kind==TokenKind.Minus ){
+                var opToken = NextToken();
+                var right = ParseFactor();
+                left = new BinaryExpression(left, opToken, right);
+            }
+            return left;
+        }
+
+        public Expression ParseFactor(){
+            var left = ParsePrimaryExpression();
+
+            while(Current.Kind==TokenKind.Multi ||Current.Kind==TokenKind.Div){
+                var opToken = NextToken();
+                var right = ParsePrimaryExpression();
+                left = new BinaryExpression(left, opToken, right);
+            }
+            return left;
+        }
+
+        private Expression ParsePrimaryExpression()
+        {
+            if(Current.Kind==TokenKind.LeftParan){
+                var left = NextToken();
+                var expression = ParseExpression();
+                var right = Match(TokenKind.RightParan);
+
+                return new ParenExpression(left,expression,right);
+            }
+
+            var numberToken = MatchForNums(TokenKind.Int, TokenKind.Float); 
+            return new NumberExpression(numberToken);
+        }
+    }
+
+    class Evalutor{
+        private readonly Expression _root;
+        public Evalutor(Expression root)
+        {
+            _root = root;
+        }
+
+        public int Evalute(){
+            return EvaluteExpression(_root);
+        }
+
+        private int EvaluteExpression(Expression root){
+            if(root is NumberExpression n){
+                return (int) n._numberToken.Value;
+            }
+            if(root is BinaryExpression b){
+                var left = EvaluteExpression(b._left);
+                var right = EvaluteExpression(b._right);
+
+                
+                if(b._opToken.Kind==TokenKind.Plus){
+                    return left + right;
+                }
+                if(b._opToken.Kind==TokenKind.Minus){
+                    return left - right;
+                }
+                if(b._opToken.Kind==TokenKind.Multi){
+                    return left * right;
+                }
+                if(b._opToken.Kind==TokenKind.Div){
+                    return left / right;
+                }
+                else{
+                    throw new Exception($"Beklenmeyen operatör, {b._opToken.Kind}");
+                } 
+            }
+
+            if(root is ParenExpression p){
+                return EvaluteExpression(p.Expression);
+            }
+            throw new Exception($"Beklenmeyen node, {root.Kind}");
+        }
+    }
+}

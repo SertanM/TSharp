@@ -1,0 +1,14 @@
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\TSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\TSharp.AssemblyInfoInputs.cache
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\TSharp.AssemblyInfo.cs
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\TSharp.csproj.CoreCompileInputs.cache
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\bin\Debug\net8.0\TSharp.exe
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\bin\Debug\net8.0\TSharp.deps.json
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\bin\Debug\net8.0\TSharp.runtimeconfig.json
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\bin\Debug\net8.0\TSharp.dll
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\bin\Debug\net8.0\TSharp.pdb
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\TSharp.dll
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\refint\TSharp.dll
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\TSharp.pdb
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\TSharp.genruntimeconfig.cache
+C:\Users\serta\Belgeler\Projects\C#\Ts\TSharp\obj\Debug\net8.0\ref\TSharp.dll
