@@ -3,14 +3,14 @@ It's a basic programming launguage written in C# to use games on unity (I haven'
 
 ![Logo](Logo.png)
 
-#Data Types
+# Data Types
 
 | Type            | C# Type           | Explanation       | Samples         |
 |-----------------|-------------------|-------------------|-----------------|
 | Number          | System.Int32      | It takes integers | 1, 2, 17, 852...|
 | Bool            | System.Boolean    | It takes boleans  | true, false     |
 
-#Binary Operators
+# Binary Operators
 
 | Operator        | Symbol            | Input Types     | Output Types      |
 |-----------------|-------------------|-----------------|-------------------|
@@ -29,7 +29,7 @@ It's a basic programming launguage written in C# to use games on unity (I haven'
 | And             | &&                | Bool            | Bool              |
 | Or              | \|\|              | Bool            | Bool              |
 
-#Unary Operators
+# Unary Operators
 
 | Operator        | Symbol            | Input Types     | Output Types      |
 |-----------------|-------------------|-----------------|-------------------|
@@ -37,7 +37,7 @@ It's a basic programming launguage written in C# to use games on unity (I haven'
 | Subtraction     | -                 | Int             | Int               |
 | Not             | !                 | Bool            | Bool              |
 
-#Variables
+# Variables
 
 | Identifier Keyword | Type           | Explanation                                   |
 |--------------------|----------------|-----------------------------------------------|
@@ -48,7 +48,7 @@ It's a basic programming launguage written in C# to use games on unity (I haven'
 |--------------------|----------------|----------------|
 | =                  | To assign      | var = value    |
 
-#Statements
+# Statements
 
 | Keyword         | Example                                                               |
 |-----------------|-----------------------------------------------------------------------|
