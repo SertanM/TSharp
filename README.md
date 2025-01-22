@@ -53,5 +53,6 @@ It's a basic programming launguage written in C# to use games on unity (I haven'
 | Keyword         | Example                                                               |
 |-----------------|-----------------------------------------------------------------------|
 | if              | if (condition) {<br>    statement <br>}                               |
+| else            | if (condition) {<br>    statement <br>}<br>else {<br>statement<br>}   |
 | for, to, with   | for (assignment) to (target) with (riseAmount){<br>    statement <br>}|
 | while           | while (condition) {<br>    statement <br>}                            |
