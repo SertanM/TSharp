@@ -11,30 +11,30 @@ It's a basic programming launguage written in C# to use games on unity (I haven'
 
 # Binary Operators
 
-| Operator        | Symbol            | Input Types     | Output Types      |
-|-----------------|-------------------|-----------------|-------------------|
-| Addition        | +                 | Number          | Number            |
-| Subtraction     | -                 | Number          | Number            |
-| Multiplication  | *                 | Number          | Number            |
-| Division        | /                 | Number          | Number            |
-| Power           | ^                 | Number          | Number            |
-| Mod             | %                 | Number          | Number            |
-| IsEqual         | ==                | Number, Bool    | Bool              |
-| NotEqual        | !=                | Number, Bool    | Bool              |
-| Bigger          | >                 | Number          | Bool              |
-| Bigger Or Equal | >=                | Number          | Bool              |
-| Smaller         | <                 | Number          | Bool              |
-| Smaller Or Equal| <=                | Number          | Bool              |
-| And             | &&                | Bool            | Bool              |
-| Or              | \|\|              | Bool            | Bool              |
+| Operator        | Symbol            | Input Types     | Output Types      | Precedence |
+|-----------------|-------------------|-----------------|-------------------|------------|
+| Addition        | +                 | Number          | Number            | 4          |
+| Subtraction     | -                 | Number          | Number            | 4          |
+| Multiplication  | *                 | Number          | Number            | 5          |
+| Division        | /                 | Number          | Number            | 5          |
+| Power           | ^                 | Number          | Number            | 6          |
+| Mod             | %                 | Number          | Number            | 5          |
+| IsEqual         | ==                | Number, Bool    | Bool              | 3          |
+| NotEqual        | !=                | Number, Bool    | Bool              | 3          |
+| Bigger          | >                 | Number          | Bool              | 3          |
+| Bigger Or Equal | >=                | Number          | Bool              | 3          |
+| Smaller         | <                 | Number          | Bool              | 3          |
+| Smaller Or Equal| <=                | Number          | Bool              | 3          |
+| And             | &&                | Bool            | Bool              | 2          |
+| Or              | \|\|              | Bool            | Bool              | 1          |
 
 # Unary Operators
 
-| Operator        | Symbol            | Input Types     | Output Types      |
-|-----------------|-------------------|-----------------|-------------------|
-| Addition        | +                 | Int             | Int               |
-| Subtraction     | -                 | Int             | Int               |
-| Not             | !                 | Bool            | Bool              |
+| Operator        | Symbol            | Input Types     | Output Types      | Precedence |
+|-----------------|-------------------|-----------------|-------------------|------------|
+| Addition        | +                 | Int             | Int               | 7          |
+| Subtraction     | -                 | Int             | Int               | 7          |
+| Not             | !                 | Bool            | Bool              | 7          |
 
 # Variables
 
