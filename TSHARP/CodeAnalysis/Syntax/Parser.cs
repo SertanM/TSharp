@@ -1,5 +1,5 @@
 ﻿
-namespace TSharp.CodeAnalysis
+namespace TSharp.CodeAnalysis.Syntax
 {
     internal sealed class Parser
     {
@@ -72,7 +72,7 @@ namespace TSharp.CodeAnalysis
             ExpressionSyntax left;
             var unaryOperatorPrecedence = Current.Kind.GetUnaryOperatorPrecedence();
 
-            if(unaryOperatorPrecedence!=0 
+            if(unaryOperatorPrecedence != 0
             && unaryOperatorPrecedence >= parentPrecedence)
             {
                 var operatorToken = NextToken();

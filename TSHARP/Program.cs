@@ -1,4 +1,7 @@
 ﻿using TSharp.CodeAnalysis;
+using TSharp.CodeAnalysis.Binding;
+using TSharp.CodeAnalysis.Syntax;
+
 
 namespace TSharp
 {
@@ -30,16 +33,20 @@ namespace TSharp
                 }
 
                 var syntaxTree = SyntaxTree.Parse(line);
+                var binder = new Binder();
+                var boundExpression = binder.BindExpression(syntaxTree.Root);
+                
+                var diagnostics = syntaxTree.Diagnostics.Concat(binder.Diagnostics).ToArray();
 
                 Console.ForegroundColor = ConsoleColor.DarkGray;
 
                 if(showTree) PrettyPrint(syntaxTree.Root);
 
-                if (!syntaxTree.Diagnostics.Any())
+                if (!diagnostics.Any())
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
 
-                    var evalautor = new Evaluator(syntaxTree.Root);
+                    var evalautor = new Evaluator(boundExpression);
                     var result = evalautor.Evaluate();
                     Console.WriteLine(result.ToString());
                 }
@@ -47,7 +54,7 @@ namespace TSharp
                 {
                     Console.ForegroundColor = ConsoleColor.DarkRed;
 
-                    foreach (var diagnostic in syntaxTree.Diagnostics)
+                    foreach (var diagnostic in diagnostics)
                         Console.WriteLine(diagnostic);
 
                     Console.WriteLine();

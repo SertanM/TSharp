@@ -1,5 +1,5 @@
 ﻿
-namespace TSharp.CodeAnalysis
+namespace TSharp.CodeAnalysis.Syntax
 {
     internal sealed class Lexer
     {
