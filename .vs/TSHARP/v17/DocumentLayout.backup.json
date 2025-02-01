@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\evaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\evaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,28 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Evaluator.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T20:06:18.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\Program.cs",
               "RelativeDocumentMoniker": "TSHARP\\Program.cs",
               "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\Program.cs",
               "RelativeToolTip": "TSHARP\\Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAgwBwAAABYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-01T17:06:48.812Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TSHARP",
+              "DocumentIndex": 2,
+              "Title": "TSHARP.csproj",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\TSHARP.csproj",
               "RelativeDocumentMoniker": "TSHARP\\TSHARP.csproj",
               "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\TSHARP.csproj",
               "RelativeToolTip": "TSHARP\\TSHARP.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-02-01T17:06:56.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-01T17:06:56.038Z"
             }
           ]
         }
