@@ -15,15 +15,28 @@ namespace TSharp.CodeAnalysis
             return EvaluateExpression(_root);
         }
 
-        private int EvaluateExpression(ExpressionSyntax root)
+        private int EvaluateExpression(ExpressionSyntax node)
         {
-            if (root is LiteralExpressionSyntax n)
+            if (node is LiteralExpressionSyntax n)
                 return (int)n.LiteralToken.Value;
 
-            if (root is ParenthesizedExpressionSyntax p)
+            if (node is ParenthesizedExpressionSyntax p)
                 return EvaluateExpression(p.Expression);
 
-            if (root is BinaryExpressionSyntax b)
+            if(node is UnaryExpressionSyntax u)
+            {
+                var operand = EvaluateExpression(u.Operand);
+
+                if (u.OperatorToken.Kind == SyntaxKind.PlusToken)
+                    return operand;
+
+                if (u.OperatorToken.Kind == SyntaxKind.MinusToken)
+                    return -operand;
+
+                throw new Exception($"Unexcepted unary operator {u.OperatorToken.Kind}!");
+            }
+
+            if (node is BinaryExpressionSyntax b)
             {
                 var left = EvaluateExpression(b.Left);
                 var right = EvaluateExpression(b.Right);
@@ -37,10 +50,10 @@ namespace TSharp.CodeAnalysis
                 if (b.OperatorToken.Kind == SyntaxKind.DivisionToken)
                     return left / right;
 
-                throw new Exception($"Unexcepted operator {b.OperatorToken.Kind}!");
+                throw new Exception($"Unexcepted binary operator {b.OperatorToken.Kind}!");
             }
 
-            throw new Exception($"Unexcepted expression {root.Kind}");
+            throw new Exception($"Unexcepted expression {node.Kind}");
         }
     }
 }
