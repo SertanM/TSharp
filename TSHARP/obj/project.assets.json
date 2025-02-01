@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\serta\\source\\repos\\TSHARP\\TSHARP\\TSHARP.csproj",
+      "projectUniqueName": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\TSHARP.csproj",
       "projectName": "TSHARP",
-      "projectPath": "C:\\Users\\serta\\source\\repos\\TSHARP\\TSHARP\\TSHARP.csproj",
+      "projectPath": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\TSHARP.csproj",
       "packagesPath": "C:\\Users\\serta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\serta\\source\\repos\\TSHARP\\TSHARP\\obj\\",
+      "outputPath": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\serta\\AppData\\Roaming\\NuGet\\NuGet.Config",

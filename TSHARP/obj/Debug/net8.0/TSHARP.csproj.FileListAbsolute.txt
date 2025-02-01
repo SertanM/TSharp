@@ -1,0 +1,15 @@
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.AssemblyInfoInputs.cache
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.AssemblyInfo.cs
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.csproj.CoreCompileInputs.cache
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.sourcelink.json
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\bin\Debug\net8.0\TSHARP.exe
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\bin\Debug\net8.0\TSHARP.deps.json
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\bin\Debug\net8.0\TSHARP.runtimeconfig.json
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\bin\Debug\net8.0\TSHARP.dll
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\bin\Debug\net8.0\TSHARP.pdb
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.dll
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\refint\TSHARP.dll
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.pdb
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\TSHARP.genruntimeconfig.cache
+C:\Users\serta\Belgeler\Projects\Github\TSharp\TSHARP\obj\Debug\net8.0\ref\TSHARP.dll
