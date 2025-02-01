@@ -29,7 +29,7 @@ namespace TSharp.CodeAnalysis
             => _position++;
 
 
-        public SyntaxToken NextToken()
+        public SyntaxToken Lex()
         {
             if (char.IsDigit(Current))
             {
@@ -60,20 +60,23 @@ namespace TSharp.CodeAnalysis
                 return new SyntaxToken(SyntaxKind.WhiteSpaceToken, start, text, null);
             }
 
-            if (Current == '+')
-                return new SyntaxToken(SyntaxKind.PlusToken, _position++, "+", null);
-            if (Current == '-')
-                return new SyntaxToken(SyntaxKind.MinusToken, _position++, "-", null);
-            if (Current == '*')
-                return new SyntaxToken(SyntaxKind.MultiplyToken, _position++, "*", null);
-            if (Current == '/')
-                return new SyntaxToken(SyntaxKind.DivisionToken, _position++, "/", null);
-            if (Current == '(')
-                return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
-            if (Current == ')')
-                return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
-            if (Current == '\0')
-                return new SyntaxToken(SyntaxKind.EndOfFileToken, _position++, "\0", null);
+            switch (Current)
+            {
+                case '+':
+                    return new SyntaxToken(SyntaxKind.PlusToken, _position++, "+", null);
+                case '-':
+                    return new SyntaxToken(SyntaxKind.MinusToken, _position++, "-", null);
+                case '*':
+                    return new SyntaxToken(SyntaxKind.MultiplyToken, _position++, "*", null);
+                case '/':
+                    return new SyntaxToken(SyntaxKind.DivisionToken, _position++, "/", null);
+                case '(':
+                    return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
+                case ')':
+                    return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
+                case '\0':
+                    return new SyntaxToken(SyntaxKind.EndOfFileToken, _position++, "\0", null);
+            }
 
             _diagnostics.Add($"ERROR: bad character input: '{Current}'");
             return new SyntaxToken(SyntaxKind.BadToken, _position++, _text.Substring(_position - 1, 1), null);

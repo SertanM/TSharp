@@ -18,7 +18,7 @@ namespace TSharp.CodeAnalysis
 
         
         //Expressions
-        NumberExpression,
+        LiteralExpression,
         BinaryExpression,
         ParenthesizedExpression
     }
