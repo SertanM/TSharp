@@ -29,8 +29,11 @@ namespace TSharp.CodeAnalysis.Syntax
 
         //Expressions
         LiteralExpression,
+        AssignmentExpression,
+        NameExpression,
         UnaryExpression,
         BinaryExpression,
-        ParenthesizedExpression
+        ParenthesizedExpression,
+        EqualsToken
     }
 }
