@@ -11,6 +11,8 @@ namespace TSharp
         {
             Console.ResetColor();
             bool showTree = false;
+            var variables = new Dictionary<VariableSymbol, object>();
+
             while (true) 
             {
                 Console.Write("> ");
@@ -34,7 +36,7 @@ namespace TSharp
 
                 var syntaxTree = SyntaxTree.Parse(line);
                 var compilatiion = new Compilatiion(syntaxTree);
-                var result = compilatiion.Evaluate();
+                var result = compilatiion.Evaluate(variables);
                 
                 var diagnostics = result.Diagnostics;
 
