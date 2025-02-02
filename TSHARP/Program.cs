@@ -33,10 +33,10 @@ namespace TSharp
                 }
 
                 var syntaxTree = SyntaxTree.Parse(line);
-                var binder = new Binder();
-                var boundExpression = binder.BindExpression(syntaxTree.Root);
+                var compilatiion = new Compilatiion(syntaxTree);
+                var result = compilatiion.Evaluate();
                 
-                var diagnostics = syntaxTree.Diagnostics.Concat(binder.Diagnostics).ToArray();
+                var diagnostics = result.Diagnostics;
 
                 Console.ForegroundColor = ConsoleColor.DarkGray;
 
@@ -46,18 +46,29 @@ namespace TSharp
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
 
-                    var evalautor = new Evaluator(boundExpression);
-                    var result = evalautor.Evaluate();
-                    Console.WriteLine(result.ToString());
+                    Console.WriteLine(result.Value);
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
 
                     foreach (var diagnostic in diagnostics)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine(diagnostic);
+                        Console.ResetColor();
 
-                    Console.WriteLine();
+                        var prefix = line.Substring(0, diagnostic.Span.Start);
+                        var error = line.Substring(diagnostic.Span.Start, diagnostic.Span.Length);
+                        var suffix = line.Substring(diagnostic.Span.End);
+                        Console.Write("    ");
+                        Console.Write(prefix);
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write(error);
+                        Console.ResetColor();
+                        Console.Write(suffix);
+
+                        Console.WriteLine();
+                    }
                 }
 
                 Console.ResetColor();

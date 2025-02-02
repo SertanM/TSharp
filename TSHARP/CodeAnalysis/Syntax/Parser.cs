@@ -5,7 +5,7 @@ namespace TSharp.CodeAnalysis.Syntax
     {
         private readonly SyntaxToken[] _tokens;
 
-        private List<string> _diagnostics = new List<string>();
+        private DiagnosticBag _diagnostics = new DiagnosticBag();
         private int _position;
 
 
@@ -30,7 +30,7 @@ namespace TSharp.CodeAnalysis.Syntax
             _diagnostics.AddRange(lexer.Diagnostics);
         }
 
-        public IEnumerable<string> Diagnostic => _diagnostics;
+        public DiagnosticBag Diagnostic => _diagnostics;
 
         private SyntaxToken Peek(int offset)
         {
@@ -58,7 +58,7 @@ namespace TSharp.CodeAnalysis.Syntax
 
             
 
-            _diagnostics.Add($"ERROR: Unexcepted token <{Current.Kind}>, excepted {kind}");
+            _diagnostics.ReportUnexceptedToken(Current.Span, Current.Kind, kind);
             return new SyntaxToken(kind, Current.Position, null, null);
         }
 

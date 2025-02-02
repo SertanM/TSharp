@@ -1,5 +1,4 @@
 ﻿using TSharp.CodeAnalysis.Binding;
-using TSharp.CodeAnalysis.Syntax;
 
 
 namespace TSharp.CodeAnalysis
