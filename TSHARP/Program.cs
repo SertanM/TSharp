@@ -19,10 +19,14 @@ namespace TSharp
 
             while (true) 
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+
                 if (textBuilder.Length == 0)
                     Console.Write("> ");
                 else
                     Console.Write(": ");
+
+                Console.ResetColor();
 
                 var input = Console.ReadLine();
 
@@ -55,7 +59,7 @@ namespace TSharp
                     continue;
                 
 
-                var compilatiion = new Compilatiion(syntaxTree);
+                var compilatiion = new Compilation(syntaxTree);
                 var result = compilatiion.Evaluate(variables);
                 
                 var diagnostics = result.Diagnostics;

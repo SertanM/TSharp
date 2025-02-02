@@ -21,10 +21,12 @@ namespace TSharp.CodeAnalysis.Syntax
         CloseParenthesisToken,
         IdentifierToken,
 
-
         //Keyword
         TrueKeyword,
         FalseKeyword,
+
+        //Nodes
+        CompilationUnit,
 
 
         //Expressions
