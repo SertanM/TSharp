@@ -19,6 +19,8 @@ namespace TSharp.CodeAnalysis.Syntax
         NotEqualsToken,
         OpenParenthesisToken,
         CloseParenthesisToken,
+        OpenBraceToken,
+        CloseBraceToken,
         IdentifierToken,
 
         //Keyword
@@ -27,6 +29,10 @@ namespace TSharp.CodeAnalysis.Syntax
 
         //Nodes
         CompilationUnit,
+
+        //Statements
+        BlockStatement,
+        ExpressionStatement,
 
 
         //Expressions

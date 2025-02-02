@@ -74,6 +74,12 @@ namespace TSharp.CodeAnalysis.Syntax
                     case ')':
                         _kind = SyntaxKind.CloseParenthesisToken;
                         break;
+                    case '{':
+                        _kind = SyntaxKind.OpenBraceToken;
+                        break;
+                    case '}':
+                        _kind = SyntaxKind.CloseBraceToken;
+                        break;
                     case '&':
                         if (Lookahead != '&') break;
                         _position++;

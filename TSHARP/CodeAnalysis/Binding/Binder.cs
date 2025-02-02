@@ -19,9 +19,13 @@ namespace TSharp.CodeAnalysis.Binding
         {
             var parentScope = CreateParentScope(previous);
             var binder = new Binder(parentScope);
-            var expression = binder.BindExpression(syntax.Expression);
+            var expression = binder.BindStatement(syntax.Expression);
             var variables = binder._scope.GetDeclaredVariables();
             var diagnostics = binder.Diagnostics.ToImmutableArray();
+
+            if(previous!=null) 
+                diagnostics = diagnostics.InsertRange(0, previous.Diagnostics);
+
             return new BoundGlobalScope(previous, diagnostics, variables, expression);
         }
 
@@ -48,7 +52,41 @@ namespace TSharp.CodeAnalysis.Binding
         }
         public DiagnosticBag Diagnostics => _diagnostics;
 
-        public BoundExpression BindExpression(ExpressionSyntax syntax)
+
+        private BoundStatement BindStatement(StatementSyntax syntax)
+        {
+            switch (syntax.Kind)
+            {
+                case SyntaxKind.BlockStatement:
+                    return BindBlockStatement((BlockStatementSyntax)syntax);
+                case SyntaxKind.ExpressionStatement:
+                    return BindExpressionStatement((ExpressionStatementSyntax)syntax);
+                default:
+                    throw new Exception($"Unexcepted syntax {syntax.Kind}");
+            }
+        }
+
+
+        private BoundStatement BindBlockStatement(BlockStatementSyntax syntax)
+        {
+            var statements = ImmutableArray.CreateBuilder<BoundStatement>();
+
+            foreach (var statementSyntax in syntax.Statements)
+            {
+                var statement = BindStatement(statementSyntax);
+                statements.Add(statement);
+            }
+
+            return new BoundBlockStatement(statements.ToImmutable());
+        }
+
+        private BoundStatement BindExpressionStatement(ExpressionStatementSyntax syntax)
+        {
+            var expression = BindExpression(syntax.Expression);
+            return new BoundExpressionStatement(expression);
+        }
+
+        private BoundExpression BindExpression(ExpressionSyntax syntax)
         {
             switch (syntax.Kind)
             {
@@ -64,7 +102,6 @@ namespace TSharp.CodeAnalysis.Binding
                     return BindAssignmentExpression((AssignmentExpressionSyntax)syntax);
                 case SyntaxKind.ParenthesizedExpression:
                     return BindParenthesizedExpression((ParenthesizedExpressionSyntax)syntax);
-                
                 default:
                     throw new Exception($"Unexcepted syntax {syntax.Kind}");
             }
@@ -98,12 +135,17 @@ namespace TSharp.CodeAnalysis.Binding
         {
             var name = syntax.IdentifierToken.Text;
             var boundExpression = BindExpression(syntax.Expression);
-            var variable = new VariableSymbol(name, boundExpression.Type);
 
-            if(!_scope.TryDeclare(variable))
+            if(!_scope.TryLookup(name, out var variable))
             {
-                _diagnostics.ReportVariableAlreadyDeclared(syntax.IdentifierToken.Span, name);
-                return new BoundLiteralExpression(0);
+                variable = new VariableSymbol(name, boundExpression.Type);
+                _scope.TryDeclare(variable);
+            }
+
+            if(boundExpression.Type != variable.Type)
+            {
+                _diagnostics.ReportCannotConvert(syntax.Expression.Span, boundExpression.Type, variable.Type);
+                return boundExpression;
             }
 
             return new BoundAssignmentExpression(variable, boundExpression);

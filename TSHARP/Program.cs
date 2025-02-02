@@ -48,6 +48,13 @@ namespace TSharp
                         Console.WriteLine("Parse tree is " + (!showTree ? "not " : "") + "showing.");
                         continue;
                     }
+
+                    if(input == "#reset")
+                    {
+                        previous = null;
+                        Console.WriteLine("Scope is reseted.");
+                        continue;
+                    }
                 }
 
                 textBuilder.Append(input);
@@ -61,6 +68,8 @@ namespace TSharp
                 var compilation = previous == null 
                                 ? new Compilation(syntaxTree)
                                 : previous.ContinueWith(syntaxTree);
+
+
                 var result = compilation.Evaluate(variables);
                 
                 var diagnostics = result.Diagnostics;

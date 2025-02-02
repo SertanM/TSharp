@@ -78,6 +78,10 @@ namespace TSharp.CodeAnalysis.Syntax
                     return "(";
                 case SyntaxKind.CloseParenthesisToken:
                     return ")";
+                case SyntaxKind.OpenBraceToken:
+                    return "{";
+                case SyntaxKind.CloseBraceToken:
+                    return "}";
                 case SyntaxKind.AndToken:
                     return "&&";
                 case SyntaxKind.OrToken:

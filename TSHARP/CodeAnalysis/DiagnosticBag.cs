@@ -68,5 +68,11 @@ namespace TSharp.CodeAnalysis
             var message = $"Variable {name} is already exist";
             Report(span, message);
         }
+
+        public void ReportCannotConvert(TextSpan span, Type fromType, Type toType)
+        {
+            var message = $"Cannot convert '{fromType}' to '{toType}'";
+            Report(span, message);
+        }
     }
 }

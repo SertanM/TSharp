@@ -1,9 +1,8 @@
-﻿
-namespace TSharp.CodeAnalysis.Syntax
+﻿namespace TSharp.CodeAnalysis.Syntax
 {
     public sealed class CompilationUnitSyntax : SyntaxNode
     {
-        public CompilationUnitSyntax(ExpressionSyntax expression, SyntaxToken endOfFileToken)
+        public CompilationUnitSyntax(StatementSyntax expression, SyntaxToken endOfFileToken)
         {
             Expression = expression;
             EndOfFileToken = endOfFileToken;
@@ -11,7 +10,7 @@ namespace TSharp.CodeAnalysis.Syntax
 
         public override SyntaxKind Kind => SyntaxKind.CompilationUnit;
 
-        public ExpressionSyntax Expression { get; }
+        public StatementSyntax Expression { get; }
         public SyntaxToken EndOfFileToken { get; }
     }
 }
