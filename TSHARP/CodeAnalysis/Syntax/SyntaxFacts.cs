@@ -55,6 +55,10 @@ namespace TSharp.CodeAnalysis.Syntax
                     return SyntaxKind.TrueKeyword;
                 case "false":
                     return SyntaxKind.FalseKeyword;
+                case "var":
+                    return SyntaxKind.VarKeyword;
+                case "let":
+                    return SyntaxKind.LetKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -98,6 +102,10 @@ namespace TSharp.CodeAnalysis.Syntax
                     return "true";
                 case SyntaxKind.FalseKeyword:
                     return "false";
+                case SyntaxKind.VarKeyword:
+                    return "var";
+                case SyntaxKind.LetKeyword:
+                    return "let";
                 default:
                     return null;
             }

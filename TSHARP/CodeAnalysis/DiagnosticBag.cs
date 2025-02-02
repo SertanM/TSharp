@@ -74,5 +74,11 @@ namespace TSharp.CodeAnalysis
             var message = $"Cannot convert '{fromType}' to '{toType}'";
             Report(span, message);
         }
+
+        public void ReportCannotAssign(TextSpan span, string name)
+        {
+            var message = $"Variable '{name}' is readonly and cannot be assigned to";
+            Report(span, message);
+        }
     }
 }

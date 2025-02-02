@@ -26,6 +26,8 @@ namespace TSharp.CodeAnalysis.Syntax
         //Keyword
         TrueKeyword,
         FalseKeyword,
+        VarKeyword,
+        LetKeyword,
 
         //Nodes
         CompilationUnit,
@@ -33,6 +35,7 @@ namespace TSharp.CodeAnalysis.Syntax
         //Statements
         BlockStatement,
         ExpressionStatement,
+        VariableDeclaration,
 
 
         //Expressions
