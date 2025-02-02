@@ -1,5 +1,5 @@
 ﻿
-namespace TSharp.CodeAnalysis
+namespace TSharp.CodeAnalysis.Text
 {
     public struct TextSpan
     {

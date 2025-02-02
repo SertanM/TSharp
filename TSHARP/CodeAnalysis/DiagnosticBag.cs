@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using TSharp.CodeAnalysis.Syntax;
+using TSharp.CodeAnalysis.Text;
 
 namespace TSharp.CodeAnalysis
 {

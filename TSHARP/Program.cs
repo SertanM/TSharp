@@ -1,6 +1,8 @@
-﻿using TSharp.CodeAnalysis;
+﻿using System.Text;
+using TSharp.CodeAnalysis;
 using TSharp.CodeAnalysis.Binding;
 using TSharp.CodeAnalysis.Syntax;
+using TSharp.CodeAnalysis.Text;
 
 
 namespace TSharp
@@ -12,29 +14,47 @@ namespace TSharp
             Console.ResetColor();
             bool showTree = false;
             var variables = new Dictionary<VariableSymbol, object>();
+            var textBuilder = new StringBuilder();
+
 
             while (true) 
             {
-                Console.Write("> ");
-                var line = Console.ReadLine();
+                if (textBuilder.Length == 0)
+                    Console.Write("> ");
+                else
+                    Console.Write(": ");
 
-                if(string.IsNullOrEmpty(line)) 
-                    return;
+                var input = Console.ReadLine();
 
-                if (line == "#cls")
+                var isBlank = string.IsNullOrEmpty(input);
+
+                if (textBuilder.Length == 0)
                 {
-                    Console.Clear();
-                    continue;
+                    if (string.IsNullOrEmpty(input))
+                        break;
+
+                    if (input == "#cls")
+                    {
+                        Console.Clear();
+                        continue;
+                    }
+
+                    if (input == "#showTree")
+                    {
+                        showTree = !showTree;
+                        Console.WriteLine("Parse tree is " + (!showTree ? "not " : "") + "showing.");
+                        continue;
+                    }
                 }
 
-                if (line == "#showTree")
-                {
-                    showTree = !showTree;
-                    Console.WriteLine("Parse tree is " + (!showTree ? "not " : "") + "showing.");
-                    continue;
-                }
+                textBuilder.Append(input);
+                var text = textBuilder.ToString(); 
+                var syntaxTree = SyntaxTree.Parse(text);
 
-                var syntaxTree = SyntaxTree.Parse(line);
+                if (!isBlank && syntaxTree.Diagnostics.Any())
+                    continue;
+                
+
                 var compilatiion = new Compilatiion(syntaxTree);
                 var result = compilatiion.Evaluate(variables);
                 
@@ -57,16 +77,26 @@ namespace TSharp
                 }
                 else
                 {
-
                     foreach (var diagnostic in diagnostics)
                     {
+                        var lineIndex = syntaxTree.Text.GetLineIndex(diagnostic.Span.Start);
+                        var line = syntaxTree.Text.Lines[lineIndex];
+    
+                        var lineNumber = lineIndex + 1;
+                        var character = diagnostic.Span.Start - line.Start + 1;
+
                         Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write($"({lineNumber}, {character}): ");
                         Console.WriteLine(diagnostic);
                         Console.ResetColor();
 
-                        var prefix = line.Substring(0, diagnostic.Span.Start);
-                        var error = line.Substring(diagnostic.Span.Start, diagnostic.Span.Length);
-                        var suffix = line.Substring(diagnostic.Span.End);
+                        var prefixSpan = TextSpan.Frombounds(line.Start, diagnostic.Span.Start);
+                        var suffixSpan = TextSpan.Frombounds(diagnostic.Span.End, line.End);
+
+                        var prefix = syntaxTree.Text.ToString(prefixSpan);
+                        var error = syntaxTree.Text.ToString(diagnostic.Span);
+                        var suffix = syntaxTree.Text.ToString(suffixSpan);
+
                         Console.Write("    ");
                         Console.Write(prefix);
                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -78,6 +108,7 @@ namespace TSharp
                     }
                 }
 
+                textBuilder.Clear();
                 Console.ResetColor();
             }
         }

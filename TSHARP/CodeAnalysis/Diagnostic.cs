@@ -1,4 +1,6 @@
-﻿namespace TSharp.CodeAnalysis
+﻿using TSharp.CodeAnalysis.Text;
+
+namespace TSharp.CodeAnalysis
 {
     public sealed class Diagnostic
     {

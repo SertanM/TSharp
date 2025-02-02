@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Immutable;
+using TSharp.CodeAnalysis.Text;
 
 namespace TSharp.CodeAnalysis.Syntax
 {
@@ -8,11 +9,13 @@ namespace TSharp.CodeAnalysis.Syntax
         private readonly ImmutableArray<SyntaxToken> _tokens;
 
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly SourceText _text;
         private int _position;
 
 
-        public Parser(string text)
+        public Parser(SourceText text)
         {
+
             var tokens = new List<SyntaxToken>();
 
             var lexer = new Lexer(text);
@@ -28,6 +31,7 @@ namespace TSharp.CodeAnalysis.Syntax
                 }
             } while (token.Kind != SyntaxKind.EndOfFileToken);
 
+            _text = text;
             _tokens = tokens.ToImmutableArray();
             _diagnostics.AddRange(lexer.Diagnostics);
         }
@@ -66,7 +70,7 @@ namespace TSharp.CodeAnalysis.Syntax
         {
             var expression = ParseExpression();
             var endOfFileToken = MatchToken(SyntaxKind.EndOfFileToken);
-            return new SyntaxTree(_diagnostics.ToImmutableArray(), expression, endOfFileToken);
+            return new SyntaxTree(_text,_diagnostics.ToImmutableArray(), expression, endOfFileToken);
         }
 
         private ExpressionSyntax ParseExpression()

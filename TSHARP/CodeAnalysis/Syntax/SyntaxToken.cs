@@ -1,4 +1,6 @@
-﻿
+﻿using TSharp.CodeAnalysis.Text;
+
+
 namespace TSharp.CodeAnalysis.Syntax
 {
     public sealed class SyntaxToken : SyntaxNode
@@ -15,6 +17,6 @@ namespace TSharp.CodeAnalysis.Syntax
         public int Position { get; }
         public string Text { get; }
         public object Value { get; }
-        public override TextSpan Span => new TextSpan(Position, Kind == SyntaxKind.EndOfFileToken ? 0 : Text.Length);
+        public override TextSpan Span => new TextSpan(Position, Kind == SyntaxKind.EndOfFileToken ? 0 : Text?.Length ?? 0);
     }
 }
