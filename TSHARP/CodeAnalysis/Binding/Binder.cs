@@ -26,7 +26,7 @@ namespace TSharp.CodeAnalysis.Binding
 
         private BoundExpression BindLiteralExpression(LiteralExpressionSyntax syntax)
         {
-            var value = syntax.LiteralToken.Value as int? ?? 0;
+            var value = syntax.Value ?? 0;
             return new BoundLiteralExpression(value);
         }
 
@@ -60,39 +60,62 @@ namespace TSharp.CodeAnalysis.Binding
 
         private BoundUnaryOperatorKind? BindUnaryOperatorKind(SyntaxKind kind, Type operandType)
         {
-            if (operandType != typeof(int))
-                return null;
-
-            switch (kind) 
+            if (operandType == typeof(int))
             {
-                case SyntaxKind.PlusToken:
-                    return BoundUnaryOperatorKind.Identity;
-                case SyntaxKind.MinusToken:
-                    return BoundUnaryOperatorKind.Negation;
-                default:
-                    throw new Exception($"Unexcepted unary operator: {kind}");
+
+                switch (kind)
+                {
+                    case SyntaxKind.PlusToken:
+                        return BoundUnaryOperatorKind.Identity;
+                    case SyntaxKind.MinusToken:
+                        return BoundUnaryOperatorKind.Negation;
+                }
             }
+
+            if (operandType == typeof(bool))
+            {
+
+                switch (kind)
+                {
+                    case SyntaxKind.NotToken:
+                        return BoundUnaryOperatorKind.LogicalNegation;
+                }
+            }
+
+            return null;
         }
 
         private BoundBinaryOperatorKind? BindBinaryOperatorKind(SyntaxKind kind, Type leftType, Type rightType)
         {
-            if (leftType != rightType
-            || leftType != typeof(int))
-                return null;
-
-            switch (kind)
+            if (rightType == typeof(int)
+              && leftType == typeof(int))
             {
-                case SyntaxKind.PlusToken:
-                    return BoundBinaryOperatorKind.Addition;
-                case SyntaxKind.MinusToken:
-                    return BoundBinaryOperatorKind.Substract;
-                case SyntaxKind.MultiplyToken:
-                    return BoundBinaryOperatorKind.Multiplication;
-                case SyntaxKind.DivisionToken:
-                    return BoundBinaryOperatorKind.Division;
-                default:
-                    throw new Exception($"Unexcepted binary operator: {kind}");
+                switch (kind)
+                {
+                    case SyntaxKind.PlusToken:
+                        return BoundBinaryOperatorKind.Addition;
+                    case SyntaxKind.MinusToken:
+                        return BoundBinaryOperatorKind.Substract;
+                    case SyntaxKind.MultiplyToken:
+                        return BoundBinaryOperatorKind.Multiplication;
+                    case SyntaxKind.DivisionToken:
+                        return BoundBinaryOperatorKind.Division;
+                }
             }
+
+            if (rightType == typeof(bool)
+              && leftType == typeof(bool))
+            {
+                switch (kind)
+                {
+                    case SyntaxKind.AndToken:
+                        return BoundBinaryOperatorKind.LogicalAnd;
+                    case SyntaxKind.OrToken:
+                        return BoundBinaryOperatorKind.LogicalOr;
+                }
+            }
+
+            return null;
         }
     }
 }

@@ -13,15 +13,15 @@ namespace TSharp.CodeAnalysis
             _root = root;
         }
 
-        public int Evaluate()
+        public object Evaluate()
         {
             return EvaluateExpression(_root);
         }
 
-        private int EvaluateExpression(BoundExpression node)
+        private object EvaluateExpression(BoundExpression node)
         {
             if (node is BoundLiteralExpression n)
-                return (int)n.Value;
+                return n.Value;
 
             
             if(node is BoundUnaryExpression u)
@@ -31,9 +31,11 @@ namespace TSharp.CodeAnalysis
                 switch (u.OperatorKind)
                 {
                     case BoundUnaryOperatorKind.Identity:
-                        return operand;
+                        return (int)operand;
                     case BoundUnaryOperatorKind.Negation:
-                        return -operand;
+                        return -(int)operand;
+                    case BoundUnaryOperatorKind.LogicalNegation:
+                        return !(bool)operand;
                     default:
                         throw new Exception($"Unexcepted unary operator {u.OperatorKind}!");
                 }
@@ -47,13 +49,17 @@ namespace TSharp.CodeAnalysis
                 switch (b.OperatorKind)
                 {
                     case BoundBinaryOperatorKind.Addition:
-                        return left + right;
+                        return (int)left + (int)right;
                     case BoundBinaryOperatorKind.Substract:
-                        return left - right;
+                        return (int)left - (int)right;
                     case BoundBinaryOperatorKind.Multiplication:
-                        return left * right;
+                        return (int)left * (int)right;
                     case BoundBinaryOperatorKind.Division:
-                        return left / right;
+                        return (int)left / (int)right;
+                    case BoundBinaryOperatorKind.LogicalAnd:
+                        return (bool)left && (bool)right;
+                    case BoundBinaryOperatorKind.LogicalOr:
+                        return (bool)left || (bool)right;
                     default:
                         throw new Exception($"Unexcepted binary operator {b.OperatorKind}!");
                 }

@@ -14,15 +14,17 @@ namespace TSharp.CodeAnalysis.Syntax
 
         public IEnumerable<string> Diagnostics => _diagnostics;
 
-        private char Current
-        {
-            get
-            {
-                if (_position >= _text.Length)
-                    return '\0';
+        private char Current => Peek(0);
+        
+        private char Lookahead => Peek(1);
 
-                return _text[_position];
-            }
+        private char Peek(int offset = 0)
+        {
+            var index = _position + offset;
+            if (index >= _text.Length)
+                return '\0';
+
+            return _text[index];
         }
 
         private void Next()
@@ -60,6 +62,19 @@ namespace TSharp.CodeAnalysis.Syntax
                 return new SyntaxToken(SyntaxKind.WhiteSpaceToken, start, text, null);
             }
 
+            if (char.IsLetter(Current))
+            {
+                var start = _position;
+
+                while (char.IsLetter(Current))
+                    Next();
+
+                var length = _position - start;
+                var text = _text.Substring(start, length);
+                var kind = SyntaxFacts.GetKeywordKind(text);
+                return new SyntaxToken(kind, start, text, null);
+            }
+
             switch (Current)
             {
                 case '+':
@@ -74,6 +89,16 @@ namespace TSharp.CodeAnalysis.Syntax
                     return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
                 case ')':
                     return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
+                case '!':
+                    return new SyntaxToken(SyntaxKind.NotToken, _position++, "!", null);
+                case '&':
+                    if (Lookahead != '&') break;
+                    _position++;
+                    return new SyntaxToken(SyntaxKind.AndToken, _position++, "&&", null);
+                case '|':
+                    if(Lookahead != '|') break;
+                    _position++;
+                    return new SyntaxToken(SyntaxKind.OrToken, _position++, "||", null);
                 case '\0':
                     return new SyntaxToken(SyntaxKind.EndOfFileToken, _position++, "\0", null);
             }

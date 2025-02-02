@@ -56,6 +56,8 @@ namespace TSharp.CodeAnalysis.Syntax
             if (Current.Kind == kind)
                 return NextToken();
 
+            
+
             _diagnostics.Add($"ERROR: Unexcepted token <{Current.Kind}>, excepted {kind}");
             return new SyntaxToken(kind, Current.Position, null, null);
         }
@@ -103,16 +105,29 @@ namespace TSharp.CodeAnalysis.Syntax
         
         private ExpressionSyntax ParsePrimaryExpression()
         {
-            if (Current.Kind == SyntaxKind.OpenParenthesisToken)
+            switch (Current.Kind)
             {
-                var left = NextToken();
-                var expression = ParseExpression();
-                var right = MatchToken(SyntaxKind.CloseParenthesisToken);
-                return new ParenthesizedExpressionSyntax(left, expression, right);
-            }
+                case SyntaxKind.OpenParenthesisToken:
+                {
+                    var left = NextToken();
+                    var expression = ParseExpression();
+                    var right = MatchToken(SyntaxKind.CloseParenthesisToken);
+                    return new ParenthesizedExpressionSyntax(left, expression, right);
+                }
 
-            var numberToken = MatchToken(SyntaxKind.NumberToken);
-            return new LiteralExpressionSyntax(numberToken);
+                case SyntaxKind.FalseKeyword:
+                case SyntaxKind.TrueKeyword:
+                {
+                    var keywordToken = NextToken();
+                    var value = keywordToken.Kind == SyntaxKind.TrueKeyword;
+                    return new LiteralExpressionSyntax(keywordToken, value);
+                }
+                default:
+                {
+                    var numberToken = MatchToken(SyntaxKind.NumberToken);
+                    return new LiteralExpressionSyntax(numberToken);
+                }
+            }
         }
     }
 }
