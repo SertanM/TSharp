@@ -11,6 +11,10 @@ namespace TSharp.CodeAnalysis.Syntax
             var parser = new Parser(text);
             var root = parser.ParseCompilationUnit();
             var diagnostics = parser.Diagnostic.ToImmutableArray();
+
+            Text = text;
+            Diagnostics = diagnostics;
+            Root = root;
         }
 
         public SourceText Text { get; }
