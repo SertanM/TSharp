@@ -28,7 +28,7 @@ namespace TSharp.CodeAnalysis
             {
                 var operand = EvaluateExpression(u.Operand);
 
-                switch (u.OperatorKind)
+                switch (u.Op.Kind)
                 {
                     case BoundUnaryOperatorKind.Identity:
                         return (int)operand;
@@ -37,7 +37,7 @@ namespace TSharp.CodeAnalysis
                     case BoundUnaryOperatorKind.LogicalNegation:
                         return !(bool)operand;
                     default:
-                        throw new Exception($"Unexcepted unary operator {u.OperatorKind}!");
+                        throw new Exception($"Unexcepted unary operator {u.Op}!");
                 }
             }
 
@@ -46,7 +46,7 @@ namespace TSharp.CodeAnalysis
                 var left = EvaluateExpression(b.Left);
                 var right = EvaluateExpression(b.Right);
 
-                switch (b.OperatorKind)
+                switch (b.Op.Kind)
                 {
                     case BoundBinaryOperatorKind.Addition:
                         return (int)left + (int)right;
@@ -61,7 +61,7 @@ namespace TSharp.CodeAnalysis
                     case BoundBinaryOperatorKind.LogicalOr:
                         return (bool)left || (bool)right;
                     default:
-                        throw new Exception($"Unexcepted binary operator {b.OperatorKind}!");
+                        throw new Exception($"Unexcepted binary operator {b.Op}!");
                 }
             }
 
