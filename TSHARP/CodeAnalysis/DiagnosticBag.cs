@@ -62,5 +62,11 @@ namespace TSharp.CodeAnalysis
             var message = $"Variable {name} doesn't exist";
             Report(span, message);
         }
+
+        public void ReportVariableAlreadyDeclared(TextSpan span, string name)
+        {
+            var message = $"Variable {name} is already exist";
+            Report(span, message);
+        }
     }
 }

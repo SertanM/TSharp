@@ -11,11 +11,10 @@ namespace TSharp
     {
         private static void Main() 
         {
-            Console.ResetColor();
             bool showTree = false;
             var variables = new Dictionary<VariableSymbol, object>();
             var textBuilder = new StringBuilder();
-
+            Compilation previous = null;
 
             while (true) 
             {
@@ -59,8 +58,10 @@ namespace TSharp
                     continue;
                 
 
-                var compilatiion = new Compilation(syntaxTree);
-                var result = compilatiion.Evaluate(variables);
+                var compilation = previous == null 
+                                ? new Compilation(syntaxTree)
+                                : previous.ContinueWith(syntaxTree);
+                var result = compilation.Evaluate(variables);
                 
                 var diagnostics = result.Diagnostics;
 
@@ -76,8 +77,9 @@ namespace TSharp
                 if (!diagnostics.Any())
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
-
                     Console.WriteLine(result.Value);
+                    Console.ResetColor();
+                    previous = compilation;
                 }
                 else
                 {

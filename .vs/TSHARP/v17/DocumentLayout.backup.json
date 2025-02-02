@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\syntaxtree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\syntax\\syntaxtree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\binding\\binder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\binding\\binder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\diagnosticbag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\diagnosticbag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\evaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\evaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,6 +21,26 @@
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\compilation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\compilation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\binding\\boundnodekind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\binding\\boundnodekind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\text\\textline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\text\\textline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\text\\textspan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\text\\textspan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\syntaxkind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\syntax\\syntaxkind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\syntaxtree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\syntax\\syntaxtree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\parser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,16 +55,8 @@
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\syntax\\assignmentexpressionsyntax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\syntaxkind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\syntax\\syntaxkind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\syntaxnode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\syntax\\syntaxnode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\evaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\evaluator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\syntaxtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,18 +69,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\syntax\\lexer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\syntax\\lexer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\text\\textline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\text\\textline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\text\\textspan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\text\\textspan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\diagnosticbag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\diagnosticbag.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\diagnostic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -99,20 +107,12 @@
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\binding\\boundbinaryoperatorkind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\binding\\binder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\binding\\binder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\binding\\boundassignmentexpression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\binding\\boundassignmentexpression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\binding\\boundvariableexpression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\binding\\boundvariableexpression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\binding\\boundnodekind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|solutionrelative:tsharp\\codeanalysis\\binding\\boundnodekind.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F79D4BC4-9450-488A-8BEE-1A9F6EA48207}|TSHARP\\TSHARP.csproj|c:\\users\\serta\\belgeler\\projects\\github\\tsharp\\tsharp\\codeanalysis\\binding\\boundbinaryexpression.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -138,23 +138,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "SourceText.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAwwEUAAAAaAAAAAAAAAA==",
+              "Title": "Compilation.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Compilation.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Compilation.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Compilation.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Compilation.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAIA4wDgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T11:36:09.049Z"
+              "WhenOpened": "2025-02-02T02:49:40.911Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
+              "Title": "Binder.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAIA0wFgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T22:24:15.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DiagnosticBag.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAQwEIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-02T02:58:08.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "SyntaxNode.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxNode.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxNode.cs",
@@ -166,94 +193,84 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SyntaxToken.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAB5AAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "SourceText.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Text\\SourceText.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAwwEUAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T20:18:15.181Z"
+              "WhenOpened": "2025-02-02T11:36:09.049Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "Evaluator.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Evaluator.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAvwC8AAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T20:06:18.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TextSpan.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-02T03:43:53.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TextLine.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-02T12:12:27.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BoundNodeKind.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-02T04:52:13.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\Program.cs",
               "RelativeDocumentMoniker": "TSHARP\\Program.cs",
               "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\Program.cs",
               "RelativeToolTip": "TSHARP\\Program.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAIwDcAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAvwFEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-01T17:06:48.812Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AssignmentExpressionSyntax.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T10:58:29.95Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SyntaxKind.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T20:20:31.716Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SyntaxTree.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T22:18:23.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Compilation.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Compilation.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Compilation.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Compilation.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Compilation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAApwAUAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T02:49:40.911Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Parser.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAMwEgAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T20:17:54.29Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "LiteralExpressionSyntax.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\LiteralExpressionSyntax.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\LiteralExpressionSyntax.cs",
@@ -265,19 +282,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Evaluator.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Evaluator.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Evaluator.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Evaluator.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Evaluator.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAvwFIAAAAUAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "Parser.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\Parser.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAMwEgAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T20:06:18.983Z"
+              "WhenOpened": "2025-02-01T20:17:54.29Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
+              "Title": "SyntaxTree.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxTree.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T22:18:23.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SyntaxKind.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxKind.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAIwCIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T20:20:31.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AssignmentExpressionSyntax.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\AssignmentExpressionSyntax.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-02T10:58:29.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SyntaxToken.cs",
+              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
+              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
+              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
+              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxToken.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAB5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T20:18:15.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "NameExpressionSyntax.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\NameExpressionSyntax.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\NameExpressionSyntax.cs",
@@ -289,7 +356,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Lexer.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\Lexer.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\Lexer.cs",
@@ -301,7 +368,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Diagnostic.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Diagnostic.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Diagnostic.cs",
@@ -313,31 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "TextSpan.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Text\\TextSpan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T03:43:53.167Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "TextLine.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Text\\TextLine.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T12:12:27.96Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "EvaluationResult.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\EvaluationResult.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\EvaluationResult.cs",
@@ -349,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "ParenthesizedExpressionSyntax.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\ParenthesizedExpressionSyntax.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\ParenthesizedExpressionSyntax.cs",
@@ -361,19 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DiagnosticBag.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\DiagnosticBag.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T02:58:08.146Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "UnaryExpressionSyntax.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\UnaryExpressionSyntax.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\UnaryExpressionSyntax.cs",
@@ -385,7 +416,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "SyntaxFacts.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\SyntaxFacts.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\SyntaxFacts.cs",
@@ -397,7 +428,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "ExpressionSyntax.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\ExpressionSyntax.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\ExpressionSyntax.cs",
@@ -409,7 +440,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "BinaryExpressionSyntax.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Syntax\\BinaryExpressionSyntax.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Syntax\\BinaryExpressionSyntax.cs",
@@ -421,19 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Binder.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Binding\\Binder.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAYwFIAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T22:24:15.163Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "BoundBinaryOperatorKind.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\BoundBinaryOperatorKind.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Binding\\BoundBinaryOperatorKind.cs",
@@ -445,7 +464,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "BoundVariableExpression.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\BoundVariableExpression.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Binding\\BoundVariableExpression.cs",
@@ -457,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "BoundAssignmentExpression.cs",
               "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\BoundAssignmentExpression.cs",
               "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Binding\\BoundAssignmentExpression.cs",
@@ -466,18 +485,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-02T04:54:17.924Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "BoundNodeKind.cs",
-              "DocumentMoniker": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
-              "RelativeDocumentMoniker": "TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
-              "ToolTip": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
-              "RelativeToolTip": "TSHARP\\CodeAnalysis\\Binding\\BoundNodeKind.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-02T04:52:13.394Z"
             },
             {
               "$type": "Document",
