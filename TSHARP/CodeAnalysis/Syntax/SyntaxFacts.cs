@@ -1,5 +1,6 @@
 ﻿
 
+
 namespace TSharp.CodeAnalysis.Syntax
 {
     internal static class SyntaxFacts
@@ -56,6 +57,45 @@ namespace TSharp.CodeAnalysis.Syntax
                     return SyntaxKind.FalseKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
+            }
+        }
+
+        public static string GetText(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.EndOfFileToken:
+                    return "\0";
+                case SyntaxKind.PlusToken:
+                    return "+";
+                case SyntaxKind.MinusToken:
+                    return "-";
+                case SyntaxKind.MultiplyToken:
+                    return "*";
+                case SyntaxKind.DivisionToken:
+                    return "/";
+                case SyntaxKind.OpenParenthesisToken:
+                    return "(";
+                case SyntaxKind.CloseParenthesisToken:
+                    return ")";
+                case SyntaxKind.AndToken:
+                    return "&&";
+                case SyntaxKind.OrToken:
+                    return "||";
+                case SyntaxKind.NotToken:
+                    return "!";
+                case SyntaxKind.NotEqualsToken:
+                    return "!=";
+                case SyntaxKind.EqualsToken:
+                    return "=";
+                case SyntaxKind.EqualsEqualsToken:
+                    return "==";
+                case SyntaxKind.TrueKeyword:
+                    return "true";
+                case SyntaxKind.FalseKeyword:
+                    return "false";
+                default:
+                    return null;
             }
         }
     }

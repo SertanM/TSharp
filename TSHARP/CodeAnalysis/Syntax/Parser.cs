@@ -5,7 +5,7 @@ namespace TSharp.CodeAnalysis.Syntax
     {
         private readonly SyntaxToken[] _tokens;
 
-        private DiagnosticBag _diagnostics = new DiagnosticBag();
+        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private int _position;
 
 
@@ -55,8 +55,6 @@ namespace TSharp.CodeAnalysis.Syntax
         {
             if (Current.Kind == kind)
                 return NextToken();
-
-            
 
             _diagnostics.ReportUnexceptedToken(Current.Span, Current.Kind, kind);
             return new SyntaxToken(kind, Current.Position, null, null);
