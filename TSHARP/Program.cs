@@ -40,9 +40,14 @@ namespace TSharp
                 
                 var diagnostics = result.Diagnostics;
 
-                Console.ForegroundColor = ConsoleColor.DarkGray;
+                
 
-                if(showTree) PrettyPrint(syntaxTree.Root);
+                if (showTree) 
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    syntaxTree.Root.WriteTo(Console.Out);
+                    Console.ResetColor();
+                }
 
                 if (!diagnostics.Any())
                 {
@@ -77,29 +82,6 @@ namespace TSharp
             }
         }
 
-        private static void PrettyPrint(SyntaxNode node, string indent = "", bool isLast = true)
-        {
-            var marker = isLast ? "|__" : "|--";
-
-            Console.Write(indent);
-            Console.Write(marker);
-            Console.Write(node.Kind);
-
-            if(node is SyntaxToken t && t.Value != null)
-            {
-                Console.Write(" ");
-                Console.Write(t.Value);
-            }
-
-            Console.WriteLine();
-
-            indent += isLast ? "   " : "|  ";
-
-            var last = node.GetChilderen().LastOrDefault();
-
-            foreach (var child in node.GetChilderen())
-                PrettyPrint(child, indent, child == last);
-        }
     }
 
 }

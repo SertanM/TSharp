@@ -14,10 +14,5 @@ namespace TSharp.CodeAnalysis.Syntax
         public SyntaxToken OperatorToken { get; }
         public ExpressionSyntax Operand { get; }
 
-        public override IEnumerable<SyntaxNode> GetChilderen()
-        {
-            yield return OperatorToken;
-            yield return Operand;
-        }
     }
 }

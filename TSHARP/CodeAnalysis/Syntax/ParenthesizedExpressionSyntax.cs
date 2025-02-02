@@ -16,11 +16,5 @@ namespace TSharp.CodeAnalysis.Syntax
         public ExpressionSyntax Expression { get; }
         public SyntaxToken CloseParenthesisToken { get; }
 
-        public override IEnumerable<SyntaxNode> GetChilderen()
-        {
-            yield return OpenParenthesisToken;
-            yield return Expression;
-            yield return CloseParenthesisToken;
-        }
     }
 }

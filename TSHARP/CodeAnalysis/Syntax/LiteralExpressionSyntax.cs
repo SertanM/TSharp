@@ -16,9 +16,5 @@ namespace TSharp.CodeAnalysis.Syntax
         public SyntaxToken LiteralToken { get; }
         public object Value { get; }
 
-        public override IEnumerable<SyntaxNode> GetChilderen()
-        {
-            yield return LiteralToken;
-        }
     }
 }
