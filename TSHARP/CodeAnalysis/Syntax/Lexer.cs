@@ -89,8 +89,6 @@ namespace TSharp.CodeAnalysis.Syntax
                     return new SyntaxToken(SyntaxKind.OpenParenthesisToken, _position++, "(", null);
                 case ')':
                     return new SyntaxToken(SyntaxKind.CloseParenthesisToken, _position++, ")", null);
-                case '!':
-                    return new SyntaxToken(SyntaxKind.NotToken, _position++, "!", null);
                 case '&':
                     if (Lookahead != '&') break;
                     _position++;
@@ -99,6 +97,14 @@ namespace TSharp.CodeAnalysis.Syntax
                     if(Lookahead != '|') break;
                     _position++;
                     return new SyntaxToken(SyntaxKind.OrToken, _position++, "||", null);
+                case '!':
+                    if (Lookahead != '=') return new SyntaxToken(SyntaxKind.NotToken, _position++, "!", null);
+                    _position++;
+                    return new SyntaxToken(SyntaxKind.NotEqualsToken, _position++, "!=", null);
+                case '=':
+                    if (Lookahead != '=') break;
+                    _position++;
+                    return new SyntaxToken(SyntaxKind.EqualsEqualsToken, _position++, "==", null);
                 case '\0':
                     return new SyntaxToken(SyntaxKind.EndOfFileToken, _position++, "\0", null);
             }

@@ -15,16 +15,16 @@ namespace TSharp.CodeAnalysis.Syntax
         NotToken,
         AndToken,
         OrToken,
+        EqualsEqualsToken,
+        NotEqualsToken,
         OpenParenthesisToken,
         CloseParenthesisToken,
         IdentifierToken,
 
 
-
         //Keyword
         TrueKeyword,
         FalseKeyword,
-
 
 
         //Expressions
