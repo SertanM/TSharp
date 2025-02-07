@@ -108,6 +108,24 @@ namespace TSharp.CodeAnalysis.Syntax
                         _position++;
                         _kind = SyntaxKind.EqualsEqualsToken;
                         break;
+                    case '>':
+                        if(Lookahead != '=')
+                        {
+                            _kind = SyntaxKind.BiggerToken;
+                            break;
+                        }
+                        _position++;
+                        _kind = SyntaxKind.EqualOreBiggerToken;
+                        break;
+                    case '<':
+                        if (Lookahead != '=')
+                        {
+                            _kind = SyntaxKind.SmallerToken;
+                            break;
+                        }
+                        _position++;
+                        _kind = SyntaxKind.EqualOreSmallerToken;
+                        break;
                     case '0':
                     case '1':
                     case '2':

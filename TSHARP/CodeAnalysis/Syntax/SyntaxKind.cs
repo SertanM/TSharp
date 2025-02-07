@@ -45,6 +45,10 @@ namespace TSharp.CodeAnalysis.Syntax
         UnaryExpression,
         BinaryExpression,
         ParenthesizedExpression,
-        EqualsToken
+        EqualsToken,
+        BiggerToken,
+        EqualOreBiggerToken,
+        SmallerToken,
+        EqualOreSmallerToken
     }
 }

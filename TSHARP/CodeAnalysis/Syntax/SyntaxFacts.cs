@@ -34,13 +34,16 @@ namespace TSharp.CodeAnalysis.Syntax
 
                 case SyntaxKind.EqualsEqualsToken:
                 case SyntaxKind.NotEqualsToken:
+                case SyntaxKind.BiggerToken:
+                case SyntaxKind.SmallerToken:
+                case SyntaxKind.EqualOreBiggerToken:
+                case SyntaxKind.EqualOreSmallerToken:
                     return 3;
 
                 case SyntaxKind.AndToken:
                     return 2;
                 case SyntaxKind.OrToken:
                     return 1;
-
 
                 default:
                     return 0;

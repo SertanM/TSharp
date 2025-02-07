@@ -136,6 +136,14 @@ namespace TSharp.CodeAnalysis
                     return Equals(left, right);
                 case BoundBinaryOperatorKind.NotEquals:
                     return !Equals(left, right);
+                case BoundBinaryOperatorKind.Bigger:
+                    return (int)left > (int)right;
+                case BoundBinaryOperatorKind.Smaller:
+                    return (int)left < (int)right;
+                case BoundBinaryOperatorKind.EqualOreBigger:
+                    return (int)left >= (int)right;
+                case BoundBinaryOperatorKind.EqualOreSmaller:
+                    return (int)left <= (int)right;
                 default:
                     throw new Exception($"Unexcepted binary operator {b.Op}!");
             }
