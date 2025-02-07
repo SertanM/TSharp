@@ -73,6 +73,7 @@ namespace TSharp.CodeAnalysis.Syntax
             return new CompilationUnitSyntax(statement, endOfFileToken);
         }
 
+
         private StatementSyntax ParseStatement()
         {
             switch (Current.Kind)
@@ -82,10 +83,16 @@ namespace TSharp.CodeAnalysis.Syntax
                 case SyntaxKind.VarKeyword:
                 case SyntaxKind.LetKeyword:
                     return ParseVariableDeclaration();
+                case SyntaxKind.IfKeyword:
+                    return ParseIfStatement();
+                case SyntaxKind.WhileKeyword:
+                    return ParseWhileStatement();
                 default:
                     return ParseExpressionStatement();
             }
         }
+
+        
 
         private BlockStatementSyntax ParseBlockStatement()
         {
@@ -110,9 +117,38 @@ namespace TSharp.CodeAnalysis.Syntax
             var exceptedKind = Current.Kind == SyntaxKind.LetKeyword ? SyntaxKind.LetKeyword : SyntaxKind.VarKeyword;
             var keyword = MatchToken(exceptedKind);
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
-            var equals = MatchToken(SyntaxKind.EqualsToken);
+            var equals = MatchToken(SyntaxKind.EqualsToken); // I will make it optional when I add types
             var initializer = ParseExpression();
             return new VariableDeclarationSyntax(keyword, identifier, equals, initializer);
+        }
+
+        private StatementSyntax ParseIfStatement()
+        {
+            var ifKeyword = MatchToken(SyntaxKind.IfKeyword);
+            var condition = ParseExpression();
+            var thenStatement = ParseStatement();
+            var elseClause = ParseOptionalElseStatement(); 
+            return new IfStatementSyntax(ifKeyword, condition, thenStatement, elseClause);
+        }
+
+        private StatementSyntax ParseWhileStatement()
+        {
+            var whileKeyword = MatchToken(SyntaxKind.WhileKeyword);
+            var condition = ParseExpression();
+            var statement = ParseStatement();
+
+            return new WhileStatementSyntax(whileKeyword, condition, statement);
+        }
+
+        private ElseClauseSyntax ParseOptionalElseStatement()
+        {
+            if(Current.Kind != SyntaxKind.ElseKeyword)
+                return null;
+
+            var elseKeyword = MatchToken(SyntaxKind.ElseKeyword);
+            var statement = ParseStatement();
+
+            return new ElseClauseSyntax(elseKeyword, statement);
         }
 
         private ExpressionStatementSyntax ParseExpressionStatement()
@@ -179,7 +215,7 @@ namespace TSharp.CodeAnalysis.Syntax
             {
                 case SyntaxKind.OpenParenthesisToken:
                     return ParseParenthesizedExpression();
-                    
+
 
                 case SyntaxKind.FalseKeyword:
                 case SyntaxKind.TrueKeyword:

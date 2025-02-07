@@ -17,23 +17,37 @@ namespace TSharp.CodeAnalysis.Syntax
         OrToken,
         EqualsEqualsToken,
         NotEqualsToken,
+        BiggerToken,
+        SmallerToken,
+        EqualOreBiggerToken,
+        EqualOreSmallerToken,
         OpenParenthesisToken,
         CloseParenthesisToken,
         OpenBraceToken,
         CloseBraceToken,
         IdentifierToken,
+        EqualsToken,
 
         //Keyword
         TrueKeyword,
         FalseKeyword,
         VarKeyword,
         LetKeyword,
+        IfKeyword,
+        ElseKeyword,
+        ForKeyword,
+        ToKeyword,
+        WhileKeyword,
 
         //Nodes
         CompilationUnit,
 
         //Statements
         BlockStatement,
+        IfStatement,
+        ElseClause,
+        ForStatement,
+        WhileStatement,
         ExpressionStatement,
         VariableDeclaration,
 
@@ -44,11 +58,6 @@ namespace TSharp.CodeAnalysis.Syntax
         NameExpression,
         UnaryExpression,
         BinaryExpression,
-        ParenthesizedExpression,
-        EqualsToken,
-        BiggerToken,
-        EqualOreBiggerToken,
-        SmallerToken,
-        EqualOreSmallerToken
+        ParenthesizedExpression
     }
 }

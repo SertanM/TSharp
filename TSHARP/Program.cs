@@ -78,7 +78,6 @@ namespace TSharp
 
                 if (showTree) 
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     syntaxTree.Root.WriteTo(Console.Out);
                     Console.ResetColor();
                 }

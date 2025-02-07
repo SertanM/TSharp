@@ -4,8 +4,12 @@
     {
         //Statements
         BlockStatement,
+        IfStatement,
+        ForStatement,
+        WhileStatement,
         ExpressionStatement,
         VariableDeclaration,
+
 
         //Expressions
         UnaryExpression,
