@@ -85,6 +85,8 @@ namespace TSharp.CodeAnalysis.Syntax
                     return ParseVariableDeclaration();
                 case SyntaxKind.IfKeyword:
                     return ParseIfStatement();
+                case SyntaxKind.ForKeyword:
+                    return ParseForStatement();
                 case SyntaxKind.WhileKeyword:
                     return ParseWhileStatement();
                 default:
@@ -100,11 +102,19 @@ namespace TSharp.CodeAnalysis.Syntax
 
             var openBraceToken = MatchToken(SyntaxKind.OpenBraceToken);
 
+
             while (Current.Kind != SyntaxKind.CloseBraceToken
                && Current.Kind != SyntaxKind.EndOfFileToken) 
             {
+                var startToken = Current;
+
+
                 var statement = ParseStatement();
                 statements.Add(statement);
+
+                if(Current==startToken)
+                    NextToken();
+
             }
 
             var closeBraceToken = MatchToken(SyntaxKind.CloseBraceToken);
@@ -129,6 +139,18 @@ namespace TSharp.CodeAnalysis.Syntax
             var thenStatement = ParseStatement();
             var elseClause = ParseOptionalElseStatement(); 
             return new IfStatementSyntax(ifKeyword, condition, thenStatement, elseClause);
+        }
+
+        private StatementSyntax ParseForStatement()
+        {
+            var forKeyword = MatchToken(SyntaxKind.ForKeyword);
+            var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            var equal = MatchToken(SyntaxKind.EqualsToken);
+            var startValue = ParseExpression();
+            var toKeyword = MatchToken(SyntaxKind.ToKeyword);
+            var endValue = ParseExpression();
+            var statement = ParseStatement();
+            return new ForStatementSyntax(forKeyword, identifier, equal, startValue, toKeyword, endValue, statement);
         }
 
         private StatementSyntax ParseWhileStatement()

@@ -11,9 +11,11 @@ namespace TSharp.CodeAnalysis.Binding
         }
         public BoundScope Parent { get; }
 
-
         public bool TryDeclare(VariableSymbol variable)
         {
+            if(String.IsNullOrEmpty(variable.Name)) 
+                return false;
+
             if(_variables.ContainsKey(variable.Name))
                 return false;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using TSharp.CodeAnalysis.Syntax;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace TSharp.CodeAnalysis.Binding
 {
@@ -67,12 +68,33 @@ namespace TSharp.CodeAnalysis.Binding
                     return BindIfStatement((IfStatementSyntax)syntax);
                 case SyntaxKind.WhileStatement:
                     return BindWhileStatement((WhileStatementSyntax)syntax);
+                case SyntaxKind.ForStatement:
+                    return BindForStatement((ForStatementSyntax)syntax);
                 default:
                     throw new Exception($"Unexcepted syntax {syntax.Kind}");
             }
         }
 
-        
+        private BoundStatement BindForStatement(ForStatementSyntax syntax)
+        {
+            var name = syntax.IdentifierToken.Text;
+
+            var startValue = BindExpression(syntax.StartValue, typeof(int));
+            var variable = new VariableSymbol(name, true, typeof(int));
+
+            _scope = new BoundScope(_scope);
+
+            
+            if (!_scope.TryDeclare(variable))
+                _diagnostics.ReportVariableAlreadyDeclared(syntax.IdentifierToken.Span, name);
+
+            var targetValue = BindExpression(syntax.TargetValue, typeof(int));
+            var body = BindStatement(syntax.Body);
+
+            _scope = _scope.Parent;
+
+            return new BoundForStatement(variable, startValue, targetValue, body);
+        }
 
         private BoundStatement BindBlockStatement(BlockStatementSyntax syntax)
         {
@@ -118,6 +140,20 @@ namespace TSharp.CodeAnalysis.Binding
             var elseStatement = syntax.ElseClause == null ? null : BindStatement(syntax.ElseClause.ElseStatement);
             return new BoundIfStatement(condition, thenStatement, elseStatement);
         }
+
+        //private BoundStatement BindForStatement(ForStatementSyntax syntax)
+        //{
+        //    var lowerBound = BindExpression(syntax.StartValue, typeof(int));
+        //    var upperBound = BindExpression(syntax.TargetValue, typeof(int));
+        //    _scope = new BoundScope(_scope);
+
+        //    //var variable = BindVariable(syntax.Identifier, true, TypeSymbol.Int);
+        //    var body = BindStatement(syntax.Statement);
+
+        //    _scope = _scope.Parent;
+
+        //    //return new BoundForStatement(variable, lowerBound, upperBound, withBound, body);
+        //}
 
         private BoundStatement BindWhileStatement(WhileStatementSyntax syntax)
         {
@@ -171,6 +207,10 @@ namespace TSharp.CodeAnalysis.Binding
         private BoundExpression BindNameExpression(NameExpressionSyntax syntax)
         {
             var name = syntax.IdentifierToken.Text;
+
+            if (string.IsNullOrEmpty(name))
+                return new BoundLiteralExpression(0);
+            
 
             if (!_scope.TryLookup(name, out var variable))
             {
