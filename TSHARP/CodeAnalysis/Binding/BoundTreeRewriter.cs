@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using TSharp.CodeAnalysis.Syntax;
 
 namespace TSharp.CodeAnalysis.Binding
 {
@@ -26,12 +25,8 @@ namespace TSharp.CodeAnalysis.Binding
             }
         }
 
-        private BoundStatement RewriteBlockStatement(BoundBlockStatement node)
+        protected virtual BoundStatement RewriteBlockStatement(BoundBlockStatement node)
         {
-            // I could make a wrong decision in there
-            // I will be check it again in another time
-
-
             ImmutableArray<BoundStatement>.Builder builder = null;
 
             for (var i = 0; i < node.Statements.Length; i++)
@@ -60,7 +55,7 @@ namespace TSharp.CodeAnalysis.Binding
             return new BoundBlockStatement(builder.ToImmutableArray<BoundStatement>());
         }
 
-        private BoundStatement RewriteVariableDeclaration(BoundVariableDeclaration node)
+        protected virtual BoundStatement RewriteVariableDeclaration(BoundVariableDeclaration node)
         {
             var initializer = RewriteExpression(node.Initializer);
             if (initializer == node.Initializer)
@@ -69,7 +64,7 @@ namespace TSharp.CodeAnalysis.Binding
             return new BoundVariableDeclaration(node.Variable, initializer);
         }
 
-        private BoundStatement RewriteIfStatement(BoundIfStatement node)
+        protected virtual BoundStatement RewriteIfStatement(BoundIfStatement node)
         {
             var condition = RewriteExpression(node.Condition);
             var thenStatement = RewriteStatement(node.ThenStatement);
@@ -80,7 +75,7 @@ namespace TSharp.CodeAnalysis.Binding
             return new BoundIfStatement(condition, thenStatement, elseClause);
         }
 
-        private BoundStatement RewriteForStatement(BoundForStatement node)
+        protected virtual BoundStatement RewriteForStatement(BoundForStatement node)
         {
             var startBound = RewriteExpression(node.StartExpression);
             var targetBound = RewriteExpression(node.TargetExpression);
@@ -92,7 +87,7 @@ namespace TSharp.CodeAnalysis.Binding
             return new BoundForStatement(node.Variable, startBound, targetBound, body);
         }
 
-        private BoundStatement RewriteWhileStatement(BoundWhileStatement node)
+        protected virtual BoundStatement RewriteWhileStatement(BoundWhileStatement node)
         {
             var condition = RewriteExpression(node.Condition);
             var body = RewriteStatement(node.Statement);
@@ -103,7 +98,7 @@ namespace TSharp.CodeAnalysis.Binding
             return new BoundWhileStatement(condition, body);
         }
 
-        private BoundStatement RewriteExpressionStatement(BoundExpressionStatement node)
+        protected virtual BoundStatement RewriteExpressionStatement(BoundExpressionStatement node)
         {
             var expression = RewriteExpression(node.Expression);
             if (expression == node.Expression)

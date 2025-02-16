@@ -36,9 +36,6 @@ namespace TSharp.CodeAnalysis
                 case BoundNodeKind.IfStatement:
                     EvaluateIfStatement((BoundIfStatement)node);
                     break;
-                case BoundNodeKind.ForStatement:
-                    EvaluateForStatement((BoundForStatement)node);
-                    break;
                 case BoundNodeKind.WhileStatement:
                     EvaluateWhileStatement((BoundWhileStatement)node);
                     break;
@@ -68,18 +65,6 @@ namespace TSharp.CodeAnalysis
                 EvaluateStatement(node.ThenStatement);
             else if (node.ElseStatement != null)
                 EvaluateStatement(node.ElseStatement);
-        }
-
-        private void EvaluateForStatement(BoundForStatement node)
-        {
-            var startBound = (int)EvaluateExpression(node.StartExpression);
-            var targetBound = (int)EvaluateExpression(node.TargetExpression);
-
-            for (int i = startBound; i != targetBound; i++)
-            {
-                _variables[node.Variable] = i;
-                EvaluateStatement(node.Body);
-            }
         }
 
         private void EvaluateWhileStatement(BoundWhileStatement node)

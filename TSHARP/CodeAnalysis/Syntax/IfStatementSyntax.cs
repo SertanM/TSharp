@@ -1,6 +1,6 @@
 ﻿namespace TSharp.CodeAnalysis.Syntax
 {
-    public sealed class IfStatementSyntax : StatementSyntax
+    internal sealed class IfStatementSyntax : StatementSyntax
     {
         public IfStatementSyntax(SyntaxToken ifKeyword, ExpressionSyntax condition, StatementSyntax thenStatement, ElseClauseSyntax elseClause)
         {
@@ -16,5 +16,13 @@
         public ExpressionSyntax Condition { get; }
         public StatementSyntax ThenStatement { get; }
         public ElseClauseSyntax ElseClause { get; }
+    }
+
+    internal sealed class BoundGotoStatement
+    {
+        public BoundGotoStatement(LabelSymbol label)
+        {
+            
+        }
     }
 }
