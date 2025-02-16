@@ -11,10 +11,14 @@ namespace TSharp
     {
         private static void Main() 
         {
-            bool showTree = false;
             var variables = new Dictionary<VariableSymbol, object>();
-            var textBuilder = new StringBuilder();
             Compilation previous = null;
+            var textBuilder = new StringBuilder();
+
+            var showTree = false;
+            var showProgram = false;
+
+            Console.ResetColor();
 
             while (true) 
             {
@@ -49,6 +53,13 @@ namespace TSharp
                         continue;
                     }
 
+                    if(input == "#showProgram")
+                    {
+                        showProgram = !showProgram;
+                        Console.WriteLine("Bound tree is " + (!showProgram ? "not " : "") + "showing.");
+                        continue;
+                    }
+
                     if(input == "#reset")
                     {
                         previous = null;
@@ -74,13 +85,16 @@ namespace TSharp
                 
                 var diagnostics = result.Diagnostics;
 
-                
+                // The heart is a sea, I apologize to those who drown in it
 
                 if (showTree) 
-                {
                     syntaxTree.Root.WriteTo(Console.Out);
-                    Console.ResetColor();
-                }
+                
+                if (showProgram)
+                    compilation.EmitTree(Console.Out);
+                
+
+
 
                 if (!diagnostics.Any())
                 {

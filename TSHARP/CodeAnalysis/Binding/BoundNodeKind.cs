@@ -4,11 +4,11 @@
     {
         //Statements
         BlockStatement,
+        VariableDeclaration,
         IfStatement,
         ForStatement,
         WhileStatement,
         ExpressionStatement,
-        VariableDeclaration,
 
 
         //Expressions

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Text;
 using TSharp.CodeAnalysis.Text;
 
 namespace TSharp.CodeAnalysis.Syntax
@@ -41,18 +42,21 @@ namespace TSharp.CodeAnalysis.Syntax
 
         public void WriteTo(TextWriter writer)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Parse Tree");
+            Console.ResetColor();
             PrettyPrint(writer, this);
         }
 
         private static void PrettyPrint(TextWriter writer, SyntaxNode node, string indent = "", bool isLast = true)
         {
-            var isToConsole = writer==Console.Out;
+            var isToConsole = writer == Console.Out;
             var marker = isLast ? "|__" : "|--";
 
             writer.Write(indent);
 
-            //if (isToConsole)
-            //    Console.ForegroundColor = ConsoleColor.DarkGray;
+            if (isToConsole)
+                Console.ForegroundColor = ConsoleColor.DarkGray;
 
             writer.Write(marker);
 
@@ -70,7 +74,7 @@ namespace TSharp.CodeAnalysis.Syntax
             }
 
             if (isToConsole)
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.DarkGray;
 
             writer.WriteLine();
 

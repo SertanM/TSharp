@@ -78,7 +78,7 @@ namespace TSharp.CodeAnalysis
             for (int i = startBound; i != targetBound; i++)
             {
                 _variables[node.Variable] = i;
-                EvaluateStatement(node.Bound);
+                EvaluateStatement(node.Body);
             }
         }
 

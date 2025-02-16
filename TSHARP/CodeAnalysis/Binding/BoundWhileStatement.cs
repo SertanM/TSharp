@@ -16,23 +16,26 @@
 
     internal sealed class BoundForStatement : BoundStatement
     {
-        public BoundForStatement(VariableSymbol variable, BoundExpression startExpression, BoundExpression targetExpression, BoundStatement bound)
+        private BoundExpression startBound;
+        private BoundExpression targetBound;
+        private BoundNode body;
+
+        public BoundForStatement(VariableSymbol variable, BoundExpression startExpression, BoundExpression targetExpression, BoundStatement body)
         {
             Variable = variable;
             StartExpression = startExpression;
             TargetExpression = targetExpression;
-            Bound = bound;
+            Body = body;
             // +: Think T think about what will you have 500 years from now?
             // -: Your mom
-
-
         }
+
 
         public override BoundNodeKind Kind => BoundNodeKind.ForStatement;
 
         public VariableSymbol Variable { get; }
         public BoundExpression StartExpression { get; }
         public BoundExpression TargetExpression { get; }
-        public BoundStatement Bound { get; }
+        public BoundStatement Body { get; }
     }
 }
