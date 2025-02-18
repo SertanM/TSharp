@@ -8,6 +8,9 @@
         IfStatement,
         ForStatement,
         WhileStatement,
+        LabelStatement,
+        GotoStatement,
+        ConditionalGotoStatement,
         ExpressionStatement,
 
 

@@ -18,12 +18,20 @@ namespace TSharp.CodeAnalysis.Binding
                     return RewriteForStatement((BoundForStatement)node);
                 case BoundNodeKind.WhileStatement:
                     return RewriteWhileStatement((BoundWhileStatement)node);
+                case BoundNodeKind.LabelStatement:
+                    return RewriteLabelStatement((BoundLabelStatement)node);
+                case BoundNodeKind.GotoStatement:
+                    return RewriteGotoStatement((BoundGotoStatement)node);
+                case BoundNodeKind.ConditionalGotoStatement:
+                    return RewriteConditionalGotoStatement((BoundConditionalGotoStatement)node);
                 case BoundNodeKind.ExpressionStatement:
                     return RewriteExpressionStatement((BoundExpressionStatement)node);
                 default:
                     throw new Exception($"Unexcepted node kind: {node.Kind}");
             }
         }
+
+        
 
         protected virtual BoundStatement RewriteBlockStatement(BoundBlockStatement node)
         {
@@ -98,6 +106,25 @@ namespace TSharp.CodeAnalysis.Binding
             return new BoundWhileStatement(condition, body);
         }
 
+        private BoundStatement RewriteLabelStatement(BoundLabelStatement node)
+        {
+            return node;
+        }
+
+        private BoundStatement RewriteGotoStatement(BoundGotoStatement node)
+        {
+            return node;
+        }
+
+        private BoundStatement RewriteConditionalGotoStatement(BoundConditionalGotoStatement node)
+        {
+            var condition = RewriteExpression(node.Condition); 
+            if(condition == node.Condition)
+                return node;
+
+            return new BoundConditionalGotoStatement(node.Label, condition, node.JumpIfFalse);
+        }
+
         protected virtual BoundStatement RewriteExpressionStatement(BoundExpressionStatement node)
         {
             var expression = RewriteExpression(node.Expression);
@@ -163,7 +190,6 @@ namespace TSharp.CodeAnalysis.Binding
 
             return new BoundBinaryExpression(left, node.Op, right);
         }
-
         
     }
 }

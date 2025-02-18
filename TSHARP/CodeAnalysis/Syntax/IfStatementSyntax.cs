@@ -17,12 +17,4 @@
         public StatementSyntax ThenStatement { get; }
         public ElseClauseSyntax ElseClause { get; }
     }
-
-    internal sealed class BoundGotoStatement
-    {
-        public BoundGotoStatement(LabelSymbol label)
-        {
-            
-        }
-    }
 }

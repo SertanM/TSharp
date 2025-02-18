@@ -36,8 +36,7 @@ namespace TSharp.CodeAnalysis.Binding
             foreach (var property in properties)
             {
                 if (property.Name == nameof(Kind)
-                 || property.Name == nameof(BoundBinaryExpression.Op)
-                 || property.Name == nameof(BoundVariableExpression.Variable))
+                 || property.Name == nameof(BoundBinaryExpression.Op))
                     continue;
 
                 if (typeof(BoundNode).IsAssignableFrom(property.PropertyType)

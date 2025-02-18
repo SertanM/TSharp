@@ -81,10 +81,7 @@ namespace TSharp
                                 : previous.ContinueWith(syntaxTree);
 
 
-                var result = compilation.Evaluate(variables);
                 
-                var diagnostics = result.Diagnostics;
-
                 // The heart is a sea, I apologize to those who drown in it
 
                 if (showTree) 
@@ -92,8 +89,10 @@ namespace TSharp
                 
                 if (showProgram)
                     compilation.EmitTree(Console.Out);
-                
 
+                var result = compilation.Evaluate(variables);
+
+                var diagnostics = result.Diagnostics;
 
 
                 if (!diagnostics.Any())
