@@ -163,7 +163,7 @@ namespace TSharp.CodeAnalysis.Binding
             return new BoundWhileStatement(condition, statement);
         }
 
-        private BoundExpression BindExpression(ExpressionSyntax syntax, Type targetType)
+        private BoundExpression BindExpression(ExpressionSyntax syntax, System.Type targetType)
         {
             var result = BindExpression(syntax);
             if(result.Type != targetType)

@@ -4,13 +4,13 @@ namespace TSharp.CodeAnalysis.Binding
 {
     internal sealed class BoundBinaryOperator
     {
-        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, Type type)
+        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, System.Type type)
             : this(syntaxKind, kind, type, type, type) { }
 
-        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, Type leftType, Type resultType) 
+        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, System.Type leftType, System.Type resultType) 
             : this(syntaxKind, kind, leftType, leftType, resultType) { }
 
-        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, Type leftType, Type rightType, Type resultType)
+        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryOperatorKind kind, System.Type leftType, System.Type rightType, System.Type resultType)
         {
             SyntaxKind = syntaxKind;
             Kind = kind;
@@ -21,9 +21,9 @@ namespace TSharp.CodeAnalysis.Binding
 
         public SyntaxKind SyntaxKind { get; }
         public BoundBinaryOperatorKind Kind { get; }
-        public Type LeftType { get; }
-        public Type RightType { get; }
-        public Type Type { get; }
+        public System.Type LeftType { get; }
+        public System.Type RightType { get; }
+        public System.Type Type { get; }
 
         private static BoundBinaryOperator[] _operators =
         {
@@ -48,7 +48,7 @@ namespace TSharp.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.NotEqualsToken, BoundBinaryOperatorKind.NotEquals, typeof(bool))
         };
 
-        public static BoundBinaryOperator Bind(SyntaxKind syntaxKind, Type leftType, Type rightType)
+        public static BoundBinaryOperator Bind(SyntaxKind syntaxKind, System.Type leftType, System.Type rightType)
         {
             foreach(var op in _operators)
                 if(op.SyntaxKind == syntaxKind && op.LeftType == leftType && op.RightType == rightType)

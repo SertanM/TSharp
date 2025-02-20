@@ -10,7 +10,7 @@
         }
 
         public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
-        public override Type Type => Op.Type;
+        public override System.Type Type => Op.Type;
 
         public BoundExpression Left { get; }
         public BoundBinaryOperator Op { get; }

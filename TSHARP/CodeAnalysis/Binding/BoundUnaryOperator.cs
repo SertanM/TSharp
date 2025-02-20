@@ -4,10 +4,10 @@ namespace TSharp.CodeAnalysis.Binding
 {
     internal sealed class BoundUnaryOperator
     {
-        private BoundUnaryOperator(SyntaxKind syntaxKind, BoundUnaryOperatorKind kind, Type operandType) 
+        private BoundUnaryOperator(SyntaxKind syntaxKind, BoundUnaryOperatorKind kind, System.Type operandType) 
             : this(syntaxKind, kind, operandType, operandType){}
 
-        private BoundUnaryOperator(SyntaxKind syntaxKind, BoundUnaryOperatorKind kind, Type operandType, Type resultType)
+        private BoundUnaryOperator(SyntaxKind syntaxKind, BoundUnaryOperatorKind kind, System.Type operandType, System.Type resultType)
         {
             SyntaxKind = syntaxKind;
             Kind = kind;
@@ -17,8 +17,8 @@ namespace TSharp.CodeAnalysis.Binding
 
         public SyntaxKind SyntaxKind { get; }
         public BoundUnaryOperatorKind Kind { get; }
-        public Type OperandType { get; }
-        public Type Type { get; }
+        public System.Type OperandType { get; }
+        public System.Type Type { get; }
 
         private static BoundUnaryOperator[] _operators = 
         {
@@ -27,7 +27,7 @@ namespace TSharp.CodeAnalysis.Binding
             new BoundUnaryOperator(SyntaxKind.MinusToken, BoundUnaryOperatorKind.Negation, typeof(int))
         };
 
-        public static BoundUnaryOperator Bind(SyntaxKind syntaxKind, Type operandType) 
+        public static BoundUnaryOperator Bind(SyntaxKind syntaxKind, System.Type operandType) 
         {
             foreach (var op in _operators) 
                 if(op.SyntaxKind == syntaxKind && op.OperandType == operandType)

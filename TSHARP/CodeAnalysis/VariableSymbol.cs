@@ -2,7 +2,7 @@
 {
     public sealed class VariableSymbol
     {
-        internal VariableSymbol(string name, bool isReadOnly, Type type)
+        internal VariableSymbol(string name, bool isReadOnly, System.Type type)
         {
             Name = name;
             IsReadOnly = isReadOnly;
@@ -11,6 +11,6 @@
 
         public string Name { get; }
         public bool IsReadOnly { get; }
-        public Type Type { get; }
+        public System.Type Type { get; }
     }
 }

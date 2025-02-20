@@ -2,6 +2,6 @@
 {
     internal abstract class BoundExpression : BoundNode
     {
-        public abstract Type Type { get; }
+        public abstract System.Type Type { get; }
     }
 }

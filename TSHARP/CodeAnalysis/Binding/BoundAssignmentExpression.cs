@@ -9,7 +9,7 @@
         }
 
         public override BoundNodeKind Kind => BoundNodeKind.AssignmentExpression;
-        public override Type Type => Expression.Type;
+        public override System.Type Type => Expression.Type;
 
         public VariableSymbol Variable { get; }
         public BoundExpression Expression { get; }
