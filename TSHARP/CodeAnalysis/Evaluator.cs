@@ -73,6 +73,7 @@ namespace TSharp.CodeAnalysis
             _lastValue = value;
         }
 
+
         private void EvaluateExpressionStatement(BoundExpressionStatement node)
         {
             _lastValue = EvaluateExpression(node.Expression);

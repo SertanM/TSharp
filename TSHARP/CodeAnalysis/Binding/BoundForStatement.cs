@@ -2,10 +2,6 @@
 {
     internal sealed class BoundForStatement : BoundStatement
     {
-        private BoundExpression startBound;
-        private BoundExpression targetBound;
-        private BoundNode body;
-
         public BoundForStatement(VariableSymbol variable, BoundExpression startExpression, BoundExpression targetExpression, BoundStatement body)
         {
             Variable = variable;

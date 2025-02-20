@@ -27,6 +27,25 @@ namespace TSharp.CodeAnalysis.Syntax
             return Parse(sourceText);
         }
 
+        public static IEnumerable<SyntaxToken> ParseTokens(string text)
+                                            => ParseTokens(SourceText.From(text));
+        
+
+
+        public static IEnumerable<SyntaxToken> ParseTokens(SourceText text)
+        {
+            var lexer = new Lexer(text);
+
+            while (true)
+            {
+                var token = lexer.Lex();
+                if (token.Kind == SyntaxKind.EndOfFileToken)
+                    break;
+
+                yield return token;
+            }
+        }
+
         public static SyntaxTree Parse(SourceText text)
         {
             return new SyntaxTree(text);

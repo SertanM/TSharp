@@ -85,7 +85,7 @@ namespace TSharp.CodeAnalysis.Lowering
             var checkLabelStatement = new BoundLabelStatement(checkLabel);
             var gotoTrue = new BoundConditionalGotoStatement(continueLabel, node.Condition, false);
             var endLabelStatement = new BoundLabelStatement(endLabel);
-
+            
             var result = new BoundBlockStatement(ImmutableArray.Create<BoundStatement>(
                     gotoCheck,
                     continueLabelStatement,
