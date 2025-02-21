@@ -1,4 +1,6 @@
-﻿namespace TSharp.CodeAnalysis.Binding
+﻿using TSharp.CodeAnalysis.Symbols;
+
+namespace TSharp.CodeAnalysis.Binding
 {
     internal sealed class BoundUnaryExpression : BoundExpression
     {
@@ -9,7 +11,7 @@
         }
 
         public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
-        public override System.Type Type => Op.Type;
+        public override TypeSymbol Type => Op.Type;
         public BoundUnaryOperator Op { get; }
         public BoundExpression Operand { get; }
     }

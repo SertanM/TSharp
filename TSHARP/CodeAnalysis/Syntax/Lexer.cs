@@ -1,5 +1,6 @@
 ﻿
 using System.Text;
+using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Text;
 
 namespace TSharp.CodeAnalysis.Syntax
@@ -218,8 +219,8 @@ namespace TSharp.CodeAnalysis.Syntax
 
             var text = _text.ToString(_start, length);
             if (!int.TryParse(text, out var value))
-                _diagnostics.ReportInvalidNumber(new TextSpan(_start, length), text, typeof(int));
-
+                _diagnostics.ReportInvalidNumber(new TextSpan(_start, length), text, TypeSymbol.Int);
+            
             _value = value;
             _kind = SyntaxKind.NumberToken;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using TSharp.CodeAnalysis.Symbols;
 
 namespace TSharp.CodeAnalysis.Binding
 {

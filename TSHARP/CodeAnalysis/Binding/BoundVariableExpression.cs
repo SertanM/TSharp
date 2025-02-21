@@ -1,4 +1,6 @@
 ﻿
+using TSharp.CodeAnalysis.Symbols;
+
 namespace TSharp.CodeAnalysis.Binding
 {
     internal sealed class BoundVariableExpression : BoundExpression
@@ -9,7 +11,7 @@ namespace TSharp.CodeAnalysis.Binding
         }
 
         public override BoundNodeKind Kind => BoundNodeKind.VariableExpression;
-        public override System.Type Type => Variable.Type;
+        public override TypeSymbol Type => Variable.Type;
         public VariableSymbol Variable { get; }
 
     }

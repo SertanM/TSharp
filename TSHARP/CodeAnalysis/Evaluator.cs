@@ -1,4 +1,5 @@
 ﻿using TSharp.CodeAnalysis.Binding;
+using TSharp.CodeAnalysis.Symbols;
 
 
 namespace TSharp.CodeAnalysis
@@ -18,7 +19,7 @@ namespace TSharp.CodeAnalysis
 
         public object Evaluate()
         {
-            var labelToIndex = new Dictionary<LabelSymbol, int>();
+            var labelToIndex = new Dictionary<BoundLabel, int>();
 
             for(var i = 0; i < _root.Statements.Length; i++)
             {
@@ -141,7 +142,7 @@ namespace TSharp.CodeAnalysis
             switch (b.Op.Kind)
             {
                 case BoundBinaryOperatorKind.Addition:
-                    if (b.Left.Type == typeof(string)) // I will edit here
+                    if (b.Left.Type == TypeSymbol.String) // I will edit here
                         return (string)left + (string)right;
                     return (int)left + (int)right;
                 case BoundBinaryOperatorKind.Substract:

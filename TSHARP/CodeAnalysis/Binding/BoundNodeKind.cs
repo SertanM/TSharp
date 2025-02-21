@@ -19,6 +19,7 @@
         LiteralExpression,
         BinaryExpression,
         AssignmentExpression,
-        VariableExpression
+        VariableExpression,
+        ErrorExpression
     }
 }

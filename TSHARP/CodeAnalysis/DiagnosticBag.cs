@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Xml.Linq;
+using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Syntax;
 using TSharp.CodeAnalysis.Text;
 
@@ -27,7 +28,7 @@ namespace TSharp.CodeAnalysis
 
         
 
-        public void ReportInvalidNumber(TextSpan textSpan, string text, System.Type type)
+        public void ReportInvalidNumber(TextSpan textSpan, string text, TypeSymbol type)
         {
             var message = $"The number {text} isn't valid {type}";
             Report(textSpan, message);
@@ -52,13 +53,13 @@ namespace TSharp.CodeAnalysis
             Report(span, message);
         }
 
-        public void ReportUndefinedUnaryOperator(TextSpan span, string operatorText, System.Type operandType)
+        public void ReportUndefinedUnaryOperator(TextSpan span, string operatorText, TypeSymbol operandType)
         {
             var message = $"Unary operator '{operatorText}' is not defined for '{operandType}'";
             Report(span, message);
         }
 
-        public void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, System.Type leftType, System.Type rightType)
+        public void ReportUndefinedBinaryOperator(TextSpan span, string operatorText, TypeSymbol leftType, TypeSymbol rightType)
         {
             var message = $"Binary operator '{operatorText}' is not defined for types '{leftType}' and '{rightType}'";
             Report(span, message);
@@ -76,7 +77,7 @@ namespace TSharp.CodeAnalysis
             Report(span, message);
         }
 
-        public void ReportCannotConvert(TextSpan span, System.Type fromType, System.Type toType)
+        public void ReportCannotConvert(TextSpan span, TypeSymbol fromType, TypeSymbol toType)
         {
             var message = $"Cannot convert '{fromType}' to '{toType}'";
             Report(span, message);

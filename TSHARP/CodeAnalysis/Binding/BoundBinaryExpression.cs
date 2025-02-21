@@ -1,4 +1,6 @@
-﻿namespace TSharp.CodeAnalysis.Binding
+﻿using TSharp.CodeAnalysis.Symbols;
+
+namespace TSharp.CodeAnalysis.Binding
 {
     internal sealed class BoundBinaryExpression : BoundExpression
     {
@@ -10,7 +12,7 @@
         }
 
         public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
-        public override System.Type Type => Op.Type;
+        public override TypeSymbol Type => Op.Type;
 
         public BoundExpression Left { get; }
         public BoundBinaryOperator Op { get; }

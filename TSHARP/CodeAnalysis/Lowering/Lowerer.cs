@@ -1,6 +1,7 @@
 ﻿using TSharp.CodeAnalysis.Syntax;
 using TSharp.CodeAnalysis.Binding;
 using System.Collections.Immutable;
+using TSharp.CodeAnalysis.Symbols;
 
 
 namespace TSharp.CodeAnalysis.Lowering
@@ -11,10 +12,10 @@ namespace TSharp.CodeAnalysis.Lowering
 
         private Lowerer() {}
 
-        private LabelSymbol GenerateLabel()
+        private BoundLabel GenerateLabel()
         {
             var name = $"Label{++_labelCount}";
-            return new LabelSymbol(name);
+            return new BoundLabel(name);
         }
 
         public static BoundBlockStatement Lower(BoundStatement statement)
@@ -101,11 +102,13 @@ namespace TSharp.CodeAnalysis.Lowering
         {
             var variableDeclaration = new BoundVariableDeclaration(node.Variable, node.StartExpression);
             var variableExpression = new BoundVariableExpression(node.Variable);
-            
+
+            // I will edit here
+
             var condition = new BoundBinaryExpression
                 (
                     variableExpression,
-                    BoundBinaryOperator.Bind(SyntaxKind.EqualOreSmallerToken, typeof(int), typeof(int)),
+                    BoundBinaryOperator.Bind(SyntaxKind.EqualOreSmallerToken, TypeSymbol.Int, TypeSymbol.Int),
                     node.TargetExpression
                 );
 
@@ -117,7 +120,7 @@ namespace TSharp.CodeAnalysis.Lowering
                         new BoundBinaryExpression
                         (
                             variableExpression,
-                            BoundBinaryOperator.Bind(SyntaxKind.PlusToken, typeof(int), typeof(int)),
+                            BoundBinaryOperator.Bind(SyntaxKind.PlusToken, TypeSymbol.Int, TypeSymbol.Int),
                             new BoundLiteralExpression(1)
                         )
                     )

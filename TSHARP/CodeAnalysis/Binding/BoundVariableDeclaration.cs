@@ -1,4 +1,6 @@
-﻿namespace TSharp.CodeAnalysis.Binding
+﻿using TSharp.CodeAnalysis.Symbols;
+
+namespace TSharp.CodeAnalysis.Binding
 {
     internal sealed class BoundVariableDeclaration : BoundStatement
     {

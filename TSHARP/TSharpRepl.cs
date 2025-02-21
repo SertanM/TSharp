@@ -1,4 +1,5 @@
 ﻿using TSharp.CodeAnalysis;
+using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Syntax;
 using TSharp.CodeAnalysis.Text;
 

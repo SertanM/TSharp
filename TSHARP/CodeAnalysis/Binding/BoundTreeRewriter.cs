@@ -138,6 +138,8 @@ namespace TSharp.CodeAnalysis.Binding
         {
             switch (node.Kind)
             {
+                case BoundNodeKind.ErrorExpression:
+                    return RewriteErrorExpression((BoundErrorExpression)node);
                 case BoundNodeKind.LiteralExpression:
                     return RewriteLiteralExpression((BoundLiteralExpression)node);
                 case BoundNodeKind.VariableExpression:
@@ -151,6 +153,11 @@ namespace TSharp.CodeAnalysis.Binding
                 default:
                     throw new Exception($"Unexcepted node kind: {node.Kind}");
             }
+        }
+
+        protected virtual BoundExpression RewriteErrorExpression(BoundErrorExpression node)
+        {
+            return node;
         }
 
         protected virtual BoundExpression RewriteLiteralExpression(BoundLiteralExpression node)

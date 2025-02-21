@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using TSharp.CodeAnalysis.Binding;
 using TSharp.CodeAnalysis.Lowering;
+using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Syntax;
 
 
