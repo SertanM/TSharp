@@ -40,6 +40,14 @@ namespace TSharp.CodeAnalysis.Syntax
             }
         }
 
+        public SyntaxToken GetLastToken()
+        {
+            if (this is SyntaxToken token)
+                return token;
+
+            return GetChilderen().Last().GetLastToken();
+        }
+
         public void WriteTo(TextWriter writer)
         {
             Console.ForegroundColor = ConsoleColor.Red;

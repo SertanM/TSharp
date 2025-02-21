@@ -238,14 +238,15 @@ namespace TSharp.CodeAnalysis.Syntax
                 case SyntaxKind.OpenParenthesisToken:
                     return ParseParenthesizedExpression();
 
-
                 case SyntaxKind.FalseKeyword:
                 case SyntaxKind.TrueKeyword:
                     return ParseBooleanLiteral();
                     
-
                 case SyntaxKind.NumberToken:
                     return ParseNumberLiteral();
+
+                case SyntaxKind.StringToken:
+                    return ParseStringLiteral();
 
                 case SyntaxKind.IdentifierToken:
                 default:
@@ -275,6 +276,12 @@ namespace TSharp.CodeAnalysis.Syntax
         {
             var numberToken = MatchToken(SyntaxKind.NumberToken);
             return new LiteralExpressionSyntax(numberToken);
+        }
+
+        private ExpressionSyntax ParseStringLiteral()
+        {
+            var stringToken = MatchToken(SyntaxKind.StringToken);
+            return new LiteralExpressionSyntax(stringToken);
         }
 
         private ExpressionSyntax ParseNameExpression()

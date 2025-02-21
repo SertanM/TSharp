@@ -32,9 +32,9 @@ namespace TSharp
                 else if (isKeyword)
                     Console.ForegroundColor = ConsoleColor.Blue;
                 else if (isNumber)
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                 else if (isIdentifier)
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
 
                 Console.Write(token.Text);
 
@@ -76,7 +76,7 @@ namespace TSharp
 
             var syntaxTree = SyntaxTree.Parse(text);
 
-            if (syntaxTree.Diagnostics.Any())
+            if (syntaxTree.Root.Statement.GetLastToken().IsMissing)
                 return false;
 
             return true;

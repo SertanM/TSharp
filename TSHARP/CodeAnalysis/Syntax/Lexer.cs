@@ -1,4 +1,5 @@
 ﻿
+using System.Text;
 using TSharp.CodeAnalysis.Text;
 
 namespace TSharp.CodeAnalysis.Syntax
@@ -126,6 +127,10 @@ namespace TSharp.CodeAnalysis.Syntax
                         _position++;
                         _kind = SyntaxKind.EqualOreSmallerToken;
                         break;
+                    case '"':
+                        ReadStringTokens();
+                        _position--;
+                        break;
                     case '0':
                     case '1':
                     case '2':
@@ -161,12 +166,47 @@ namespace TSharp.CodeAnalysis.Syntax
             return new SyntaxToken(_kind, _start, text, _value);
         }
 
+        
+
         private void ReadWhiteSpaces()
         {
             while (char.IsWhiteSpace(Current))
                 Next();
 
             _kind = SyntaxKind.WhiteSpaceToken;
+        }
+
+        private void ReadStringTokens()
+        {
+            _position++;
+            var sb = new StringBuilder();
+
+            var isDone = false;
+            while (!isDone)
+            {
+                switch (Current)
+                {
+                    case '\0':
+                    case '\r':
+                    case '\n':
+                        var span = new TextSpan(_start, 1);
+                        _diagnostics.ReportUnterminatedString(span);
+                        isDone = true;
+                        break;
+                    case '"':
+                        isDone = true; 
+                        _position++;
+                        break;
+                    default:
+                        sb.Append(Current);
+                        _position++;
+                        break;
+                }
+
+            }
+
+            _kind = SyntaxKind.StringToken;
+            _value = sb.ToString();
         }
 
         private void ReadNumberTokens()
@@ -183,6 +223,7 @@ namespace TSharp.CodeAnalysis.Syntax
             _value = value;
             _kind = SyntaxKind.NumberToken;
         }
+        
         private void ReadIdentifierOrKeyword()
         {
             while (char.IsLetter(Current))

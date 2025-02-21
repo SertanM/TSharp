@@ -48,10 +48,9 @@ namespace TSharp
                 Render();
             }
 
-            private void SubmissionDocumentChanged(object sender, NotifyCollectionChangedEventArgs e)
-            {
-                Render();
-            }
+            private void SubmissionDocumentChanged(object sender, NotifyCollectionChangedEventArgs e) 
+                => Render();
+            
 
             private void Render()
             {
@@ -61,10 +60,12 @@ namespace TSharp
                 
                 foreach(var line in _submissionDocument)
                 {
-                    Console.SetCursorPosition(0, _cursorTop + lineCount);
+                    int cursorPos = _cursorTop + lineCount;
+                    if (cursorPos < Console.BufferHeight)
+                        Console.SetCursorPosition(0, _cursorTop + lineCount);
                     Console.ForegroundColor = ConsoleColor.Green;
 
-                    if (lineCount==0)
+                    if (lineCount == 0)
                         Console.Write("> ");
                     else
                         Console.Write(": ");
@@ -95,7 +96,9 @@ namespace TSharp
 
             private void UpdateCursorPosition()
             {
-                Console.CursorTop = _cursorTop + CurrentLine;
+                int newPos = _cursorTop + CurrentLine;
+                if(newPos < Console.BufferHeight)
+                    Console.CursorTop = _cursorTop + CurrentLine;
                 Console.CursorLeft = 2 + _currentCharacter;
             }
 
@@ -108,16 +111,23 @@ namespace TSharp
 
                 set 
                 {
-                    if (_currentLine == value) 
+                    if (_currentLine == value)
+                        return;
+
+                    if (value < 0 || value >= _submissionDocument.Count)
                         return;
 
                     _currentLine = value;
-                    _currentCharacter = Math.Min(_submissionDocument[_currentLine].Length, _currentCharacter);
+
+                    _currentCharacter = Math.Min(
+                        _submissionDocument[_currentLine].Length,
+                        Math.Max(0, _currentCharacter)
+                    );
 
                     UpdateCursorPosition();
+
                 }
             }
-
 
             public int CurrentCharacter 
             {

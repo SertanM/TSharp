@@ -141,6 +141,8 @@ namespace TSharp.CodeAnalysis
             switch (b.Op.Kind)
             {
                 case BoundBinaryOperatorKind.Addition:
+                    if (b.Left.Type == typeof(string)) // I will edit here
+                        return (string)left + (string)right;
                     return (int)left + (int)right;
                 case BoundBinaryOperatorKind.Substract:
                     return (int)left - (int)right;

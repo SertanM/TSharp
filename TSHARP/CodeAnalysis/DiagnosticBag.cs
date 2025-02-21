@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Xml.Linq;
 using TSharp.CodeAnalysis.Syntax;
 using TSharp.CodeAnalysis.Text;
 
@@ -36,6 +37,12 @@ namespace TSharp.CodeAnalysis
         {
             var span = new TextSpan(position, 1);
             var message = $"Bad character input: '{character}'";
+            Report(span, message);
+        }
+
+        public void ReportUnterminatedString(TextSpan span)
+        {
+            var message = "Unterminated string literal.";
             Report(span, message);
         }
 
@@ -80,5 +87,7 @@ namespace TSharp.CodeAnalysis
             var message = $"Variable '{name}' is readonly and cannot be assigned to";
             Report(span, message);
         }
+
+        
     }
 }

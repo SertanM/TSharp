@@ -1,6 +1,5 @@
 ﻿using System.Collections.Immutable;
 using TSharp.CodeAnalysis.Syntax;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace TSharp.CodeAnalysis.Binding
 {
@@ -20,7 +19,7 @@ namespace TSharp.CodeAnalysis.Binding
         {
             var parentScope = CreateParentScope(previous);
             var binder = new Binder(parentScope);
-            var expression = binder.BindStatement(syntax.Expression);
+            var expression = binder.BindStatement(syntax.Statement);
             var variables = binder._scope.GetDeclaredVariables();
             var diagnostics = binder.Diagnostics.ToImmutableArray();
 

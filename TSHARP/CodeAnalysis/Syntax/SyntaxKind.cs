@@ -7,6 +7,7 @@ namespace TSharp.CodeAnalysis.Syntax
         EndOfFileToken,
         BadToken,
         NumberToken,
+        StringToken,
         WhiteSpaceToken,
         PlusToken,
         MinusToken,

@@ -11,6 +11,7 @@ namespace TSharp.CodeAnalysis.Syntax
             Position = position;
             Text = text;
             Value = value;
+            IsMissing = text == null;
         }
 
         public override SyntaxKind Kind { get; }
@@ -18,5 +19,7 @@ namespace TSharp.CodeAnalysis.Syntax
         public string Text { get; }
         public object Value { get; }
         public override TextSpan Span => new TextSpan(Position, Kind == SyntaxKind.EndOfFileToken ? 0 : Text?.Length ?? 0);
+
+        public bool IsMissing { get; }
     }
 }

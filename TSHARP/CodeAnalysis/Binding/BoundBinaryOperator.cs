@@ -38,6 +38,11 @@ namespace TSharp.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.EqualsEqualsToken, BoundBinaryOperatorKind.Equals, typeof(int), typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.NotEqualsToken, BoundBinaryOperatorKind.NotEquals, typeof(int), typeof(bool)),
 
+            new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryOperatorKind.Addition, typeof(string)),
+
+            new BoundBinaryOperator(SyntaxKind.EqualsEqualsToken, BoundBinaryOperatorKind.Equals, typeof(string), typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.NotEqualsToken, BoundBinaryOperatorKind.NotEquals, typeof(string), typeof(bool)),
+
             new BoundBinaryOperator(SyntaxKind.BiggerToken, BoundBinaryOperatorKind.Bigger, typeof(int), typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.SmallerToken, BoundBinaryOperatorKind.Smaller, typeof(int), typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.EqualOreBiggerToken, BoundBinaryOperatorKind.EqualOreBigger, typeof(int), typeof(bool)),
