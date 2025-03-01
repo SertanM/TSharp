@@ -96,10 +96,14 @@ namespace TSharp.CodeAnalysis
                     return EvaluateBinaryExpression((BoundBinaryExpression)node);
                 case BoundNodeKind.CallExpression:
                     return EvaluateCallExpression((BoundCallExpression) node);
+                case BoundNodeKind.ConversionExpression:
+                    return EvaluateConversionExpression((BoundConversionExpression)node);
                 default:
                     throw new Exception($"Unexcepted expression {node.Kind}");
             }
         }
+
+        
 
         private static object EvaluateLiteralExpression(BoundLiteralExpression n)
             => n.Value;
@@ -186,6 +190,23 @@ namespace TSharp.CodeAnalysis
             {
                 throw new Exception($"Unexcepted function {node.Function.Name}");
             }
+        }
+
+        private object EvaluateConversionExpression(BoundConversionExpression node)
+        {
+            var value = EvaluateExpression(node.Expression);
+
+
+            if (node.Type == TypeSymbol.Bool)
+                return Convert.ToBoolean(value);
+            
+            if (node.Type == TypeSymbol.Int)
+                return Convert.ToInt32(value);
+        
+            if (node.Type == TypeSymbol.String)
+                return Convert.ToString(value);
+            
+            throw new Exception($"Unexcepted type {node.Type}");
         }
     }
 }

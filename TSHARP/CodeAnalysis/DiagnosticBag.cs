@@ -111,5 +111,6 @@ namespace TSharp.CodeAnalysis
             var message = "Expression must have a value";
             Report(span, message);
         }
+
     }
 }

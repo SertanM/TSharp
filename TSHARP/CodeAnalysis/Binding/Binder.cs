@@ -282,6 +282,10 @@ namespace TSharp.CodeAnalysis.Binding
             
             if (!_scope.TryLookupFunction(syntax.Identifier.Text, out FunctionSymbol function))
             {
+                if (syntax.Arguments.Count == 1
+                 && LookUp(syntax.Identifier.Text) is TypeSymbol type)
+                    return BindConversion(type, syntax.Arguments[0]);
+
                 _diagnostics.ReportUndefinedFunction(syntax.Identifier.Span, syntax.Identifier.Text);
                 return new BoundErrorExpression();
             }
@@ -306,6 +310,20 @@ namespace TSharp.CodeAnalysis.Binding
 
             return new BoundCallExpression(function, boundArguments.ToImmutableArray());
         }
+        private BoundExpression BindConversion(TypeSymbol type, ExpressionSyntax syntax)
+        {
+            var expression = BindExpression(syntax);
+
+            var conversion = Conversion.Classify(expression.Type, type);
+
+            if (!conversion.Exist)
+            {
+                _diagnostics.ReportCannotConvert(syntax.Span, expression.Type, type);
+                return new BoundErrorExpression();
+            }
+
+            return new BoundConversionExpression(type, expression);
+        }
         private VariableSymbol BindVariable(SyntaxToken identifier, bool isReadonly, TypeSymbol symbol)
         {
             var name = identifier.Text ?? "?";
@@ -317,5 +335,20 @@ namespace TSharp.CodeAnalysis.Binding
 
             return variable;
         }
+        private TypeSymbol LookUp(string name)
+        {
+            switch (name) 
+            {
+                case "bool":
+                    return TypeSymbol.Bool;
+                case "int":
+                    return TypeSymbol.Int;
+                case "string":
+                    return TypeSymbol.String;
+                default: 
+                    throw new Exception($"Is there no type for {name}");
+            }
+        }
+
     }
 }
