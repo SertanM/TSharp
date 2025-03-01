@@ -5,39 +5,88 @@ namespace TSharp.CodeAnalysis.Binding
 {
     internal sealed class BoundScope
     {
-        private Dictionary<string, VariableSymbol> _variables = new Dictionary<string, VariableSymbol>();
+        private Dictionary<string, VariableSymbol> _variables;
+        private Dictionary<string, FunctionSymbol> _functions;
+
         public BoundScope(BoundScope parent)
         {
             Parent = parent;
         }
         public BoundScope Parent { get; }
 
-        public bool TryDeclare(VariableSymbol variable)
+        public bool TryDeclareVariable(VariableSymbol variable)
         {
-            if(String.IsNullOrEmpty(variable.Name)) 
+            if (_variables == null)
+                _variables = new Dictionary<string, VariableSymbol>();
+
+            if (String.IsNullOrEmpty(variable.Name))
                 return false;
 
-            if(_variables.ContainsKey(variable.Name))
+            if (_variables.ContainsKey(variable.Name))
                 return false;
 
             _variables.Add(variable.Name, variable);
             return true;
         }
 
-        public bool TryLookup(string name, out VariableSymbol variable)
+        public bool TryLookupVariable(string name, out VariableSymbol variable)
         {
-            if(_variables.TryGetValue(name, out variable)) 
+            variable = null;
+
+            if (_variables != null && _variables.TryGetValue(name, out variable))
                 return true;
 
-            if(Parent == null) 
+
+            if (Parent == null)
                 return false;
 
-            return Parent.TryLookup(name, out variable);
+            return Parent.TryLookupVariable(name, out variable);
+        }
+
+        public bool TryDeclareFunction(FunctionSymbol variable)
+        {
+            if (_functions == null)
+                _functions = new Dictionary<string, FunctionSymbol>();
+
+            if (String.IsNullOrEmpty(variable.Name))
+                return false;
+
+            if (_functions.ContainsKey(variable.Name))
+                return false;
+
+            _functions.Add(variable.Name, variable);
+            return true;
+        }
+
+        public bool TryLookupFunction(string name, out FunctionSymbol function)
+        {
+            function = null;
+
+            if (_functions != null && _functions.TryGetValue(name, out function))
+                return true;
+
+            if (Parent == null)
+                return false;
+
+            return Parent.TryLookupFunction(name, out function);
         }
 
         public ImmutableArray<VariableSymbol> GetDeclaredVariables()
         {
-            return _variables.Values.ToImmutableArray();
+            if(_variables == null)
+                return ImmutableArray<VariableSymbol>.Empty;
+            
+
+            return _variables.Values.ToImmutableArray(); 
+        }
+
+
+        public ImmutableArray<FunctionSymbol> GetDeclaredFunctions()
+        {
+            if (_functions == null)
+                return ImmutableArray<FunctionSymbol>.Empty;
+
+            return _functions.Values.ToImmutableArray(); 
         }
     }
 }

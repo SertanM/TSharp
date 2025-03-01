@@ -30,12 +30,11 @@ namespace TSharp.CodeAnalysis.Syntax
                     if(child != null)
                         yield return child;
                 }
-                else if(typeof(IEnumerable<SyntaxNode>).IsAssignableFrom(property.PropertyType))
+                else if(typeof(SeperatedSyntaxList).IsAssignableFrom(property.PropertyType))
                 {
-                    var children = (IEnumerable<SyntaxNode>)property.GetValue(this);
-                    foreach(var child in children)
-                        if(child != null) 
-                            yield return child;
+                    var sepertatedSyntaxList = (SeperatedSyntaxList)property.GetValue(this);
+                    foreach(var child in sepertatedSyntaxList.GetWithSeparators())
+                        yield return child;
                 }
             }
         }

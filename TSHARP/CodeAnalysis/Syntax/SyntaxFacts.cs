@@ -96,6 +96,8 @@
                     return "{";
                 case SyntaxKind.CloseBraceToken:
                     return "}";
+                case SyntaxKind.CommaToken:
+                    return ",";
                 case SyntaxKind.AndToken:
                     return "&&";
                 case SyntaxKind.OrToken:

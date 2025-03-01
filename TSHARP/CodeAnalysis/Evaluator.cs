@@ -94,11 +94,12 @@ namespace TSharp.CodeAnalysis
                     return EvaluateUnaryExpression((BoundUnaryExpression)node);
                 case BoundNodeKind.BinaryExpression:
                     return EvaluateBinaryExpression((BoundBinaryExpression)node);
+                case BoundNodeKind.CallExpression:
+                    return EvaluateCallExpression((BoundCallExpression) node);
                 default:
                     throw new Exception($"Unexcepted expression {node.Kind}");
             }
         }
-
 
         private static object EvaluateLiteralExpression(BoundLiteralExpression n)
             => n.Value;
@@ -107,15 +108,12 @@ namespace TSharp.CodeAnalysis
         private object EvaluateVariableExpression(BoundVariableExpression v)
             => _variables[v.Variable];
         
-
         private object EvaluateAssignmentExpression(BoundAssignmentExpression a)
         {
             var value = EvaluateExpression(a.Expression);
             _variables[a.Variable] = value;
             return value;
         }
-
-
 
         private object EvaluateUnaryExpression(BoundUnaryExpression u)
         {
@@ -169,6 +167,24 @@ namespace TSharp.CodeAnalysis
                     return (int)left <= (int)right;
                 default:
                     throw new Exception($"Unexcepted binary operator {b.Op}!");
+            }
+        }
+
+        private object EvaluateCallExpression(BoundCallExpression node)
+        {
+            if (node.Function == BuildInFunctions.Input)
+            {
+                return Console.ReadLine();
+            }
+            else if (node.Function == BuildInFunctions.Print) 
+            {
+                var message = (string)EvaluateExpression(node.Arguments[0]);
+                Console.WriteLine(message);
+                return null;
+            }
+            else
+            {
+                throw new Exception($"Unexcepted function {node.Function.Name}");
             }
         }
     }

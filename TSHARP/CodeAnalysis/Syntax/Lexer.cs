@@ -82,6 +82,9 @@ namespace TSharp.CodeAnalysis.Syntax
                     case '}':
                         _kind = SyntaxKind.CloseBraceToken;
                         break;
+                    case ',':
+                        _kind = SyntaxKind.CommaToken;
+                        break;
                     case '&':
                         if (Lookahead != '&') break;
                         _position++;
@@ -128,6 +131,7 @@ namespace TSharp.CodeAnalysis.Syntax
                         _position++;
                         _kind = SyntaxKind.EqualOreSmallerToken;
                         break;
+
                     case '"':
                         ReadStringTokens();
                         _position--;
@@ -153,7 +157,7 @@ namespace TSharp.CodeAnalysis.Syntax
                         _position--;
                         break;
                     default:
-                        _diagnostics.ReportBadToken(_position, Current);
+                        _diagnostics.ReportBadCharacter(_position, Current);
                         break;
                 }
                 _position++;

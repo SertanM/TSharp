@@ -28,6 +28,7 @@ namespace TSharp.CodeAnalysis.Syntax
         CloseBraceToken,
         IdentifierToken,
         EqualsToken,
+        CommaToken,
 
         //Keyword
         TrueKeyword,
@@ -59,6 +60,7 @@ namespace TSharp.CodeAnalysis.Syntax
         NameExpression,
         UnaryExpression,
         BinaryExpression,
-        ParenthesizedExpression
+        ParenthesizedExpression,
+        CallExpression
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Syntax;
@@ -26,15 +27,13 @@ namespace TSharp.CodeAnalysis
             _diagnostics.Add(diagnostic);
         }
 
-        
-
         public void ReportInvalidNumber(TextSpan textSpan, string text, TypeSymbol type)
         {
             var message = $"The number {text} isn't valid {type}";
             Report(textSpan, message);
         }
 
-        public void ReportBadToken(int position, char character)
+        public void ReportBadCharacter(int position, char character)
         {
             var span = new TextSpan(position, 1);
             var message = $"Bad character input: '{character}'";
@@ -71,6 +70,12 @@ namespace TSharp.CodeAnalysis
             Report(span, message);
         }
 
+        public void ReportUndefinedFunction(TextSpan span, string name)
+        {
+            var message = $"Function {name} doesn't exists";
+            Report(span, message);
+        }
+
         public void ReportVariableAlreadyDeclared(TextSpan span, string name)
         {
             var message = $"Variable {name} is already exist";
@@ -89,6 +94,22 @@ namespace TSharp.CodeAnalysis
             Report(span, message);
         }
 
-        
+        public void ReportWrongArgument(TextSpan span, string name, int exceptedCount, int actualCount)
+        {
+            var message = $"Function {name} requires {exceptedCount} but was given {actualCount}";
+            Report(span, message);
+        }
+
+        public void ReportWrongArgumentType(TextSpan span, string parameterName, TypeSymbol exceptedType, TypeSymbol actualType)
+        {
+            var message = $"Function {parameterName} requires a value of {exceptedType} but was given a value of {actualType}";
+            Report(span, message);
+        }
+
+        public void ReportExpressionMustHaveValue(TextSpan span)
+        {
+            var message = "Expression must have a value";
+            Report(span, message);
+        }
     }
 }

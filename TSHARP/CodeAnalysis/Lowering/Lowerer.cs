@@ -103,12 +103,12 @@ namespace TSharp.CodeAnalysis.Lowering
             var variableDeclaration = new BoundVariableDeclaration(node.Variable, node.StartExpression);
             var variableExpression = new BoundVariableExpression(node.Variable);
 
-            // I will edit here
+            // I DONT WANT TO DIE
 
             var condition = new BoundBinaryExpression
                 (
                     variableExpression,
-                    BoundBinaryOperator.Bind(SyntaxKind.EqualOreSmallerToken, TypeSymbol.Int, TypeSymbol.Int),
+                    BoundBinaryOperator.Bind(SyntaxKind.NotEqualsToken, TypeSymbol.Int, TypeSymbol.Int),
                     node.TargetExpression
                 );
 

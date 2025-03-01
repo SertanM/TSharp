@@ -150,6 +150,8 @@ namespace TSharp.CodeAnalysis.Binding
                     return RewriteUnaryExpression((BoundUnaryExpression)node);
                 case BoundNodeKind.BinaryExpression:
                     return RewriteBinaryExpression((BoundBinaryExpression)node);
+                case BoundNodeKind.CallExpression:
+                    return RewriteCallExpression((BoundCallExpression)node);
                 default:
                     throw new Exception($"Unexcepted node kind: {node.Kind}");
             }
@@ -197,6 +199,35 @@ namespace TSharp.CodeAnalysis.Binding
 
             return new BoundBinaryExpression(left, node.Op, right);
         }
-        
+
+        protected virtual BoundExpression RewriteCallExpression(BoundCallExpression node)
+        {
+            ImmutableArray<BoundExpression>.Builder builder = null;
+
+            for (var i = 0; i < node.Arguments.Length; i++)
+            {
+                var oldExpression = node.Arguments[i];
+                var newExpression = RewriteExpression(oldExpression);
+
+                if (newExpression != oldExpression)
+                {
+                    if (builder == null)
+                    {
+                        builder = ImmutableArray.CreateBuilder<BoundExpression>(node.Arguments.Length);
+
+                        for (var j = 0; j < i; j++)
+                            builder.Add(node.Arguments[j]);
+                    }
+                }
+
+                if (builder != null)
+                    builder.Add(newExpression);
+            }
+
+            if (builder == null)
+                return node;
+
+            return new BoundCallExpression(node.Function, builder.ToImmutableArray<BoundExpression>());
+        }
     }
 }
