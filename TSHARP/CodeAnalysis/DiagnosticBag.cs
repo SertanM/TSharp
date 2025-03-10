@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Syntax;
 using TSharp.CodeAnalysis.Text;
@@ -76,15 +74,27 @@ namespace TSharp.CodeAnalysis
             Report(span, message);
         }
 
-        public void ReportVariableAlreadyDeclared(TextSpan span, string name)
+        public void ReportUndefinedType(TextSpan span, string name)
         {
-            var message = $"Variable {name} is already exist";
+            var message = $"Type {name} doesn't exists";
+            Report(span, message);
+        }
+
+        public void ReportSymbolAlreadyDeclared(TextSpan span, string name)
+        {
+            var message = $"{name} is already exist";
             Report(span, message);
         }
 
         public void ReportCannotConvert(TextSpan span, TypeSymbol fromType, TypeSymbol toType)
         {
             var message = $"Cannot convert '{fromType}' to '{toType}'";
+            Report(span, message);
+        }
+
+        public void ReportCannotConvertImplicitly(TextSpan span, TypeSymbol fromType, TypeSymbol toType)
+        {
+            var message = $"Cannot convert '{fromType}' to '{toType}'. An implicity conversion exists, are you missing a cast?";
             Report(span, message);
         }
 
@@ -112,5 +122,10 @@ namespace TSharp.CodeAnalysis
             Report(span, message);
         }
 
+        public void XXX_ReportFunctionsAreUnsupported(TextSpan span)
+        {
+            var message = "Functions with type aren't supported yet";
+            Report(span, message);
+        }
     }
 }

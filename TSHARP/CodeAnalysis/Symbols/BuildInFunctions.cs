@@ -5,10 +5,9 @@ namespace TSharp.CodeAnalysis.Symbols
 {
     internal static class BuildInFunctions
     {
-        // I will edit there
-
         public static readonly FunctionSymbol Print = new FunctionSymbol("print", ImmutableArray.Create(new ParameterSymbol("text", TypeSymbol.String)), TypeSymbol.Void);
         public static readonly FunctionSymbol Input = new FunctionSymbol("input", ImmutableArray<ParameterSymbol>.Empty, TypeSymbol.String);
+        public static readonly FunctionSymbol Random = new FunctionSymbol("rnd", ImmutableArray.Create(new ParameterSymbol("max", TypeSymbol.Int)), TypeSymbol.Int);
 
         internal static IEnumerable<FunctionSymbol> GetAll()
                             => typeof(BuildInFunctions).GetFields(BindingFlags.Public | BindingFlags.Static)

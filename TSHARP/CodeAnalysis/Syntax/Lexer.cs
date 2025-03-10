@@ -82,6 +82,9 @@ namespace TSharp.CodeAnalysis.Syntax
                     case '}':
                         _kind = SyntaxKind.CloseBraceToken;
                         break;
+                    case ':':
+                        _kind = SyntaxKind.ColonToken;
+                        break;
                     case ',':
                         _kind = SyntaxKind.CommaToken;
                         break;

@@ -1,4 +1,5 @@
-﻿using TSharp.CodeAnalysis;
+﻿using System.Reflection;
+using TSharp.CodeAnalysis;
 using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Syntax;
 using TSharp.CodeAnalysis.Text;
@@ -16,26 +17,28 @@ namespace TSharp
         protected override void RenderLine(string line)
         {
             var tokens = SyntaxTree.ParseTokens(line);
-            
-            var isWillMagenta = false;
+
             foreach (var token in tokens) 
             {
-                var isMetaword = token.Text.StartsWith("#");
                 var isKeyword = token.Kind.ToString().EndsWith("Keyword");
                 var isNumber = token.Kind == SyntaxKind.NumberToken;
-                var isIdentifier = token.Kind == SyntaxKind.IdentifierToken;
+                var isString = token.Kind == SyntaxKind.StringToken;
+                var isAnyType = token.Text == "int"
+                             || token.Text == "bool"
+                             || token.Text == "string";
 
-                if (isMetaword || isWillMagenta)
-                {
-                    isWillMagenta = !isWillMagenta;
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                }
-                else if (isKeyword)
+                var isIdentifier = token.Kind == SyntaxKind.IdentifierToken;
+                
+                if (isKeyword)
                     Console.ForegroundColor = ConsoleColor.Blue;
                 else if (isNumber)
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                else if (isString)
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                else if (isAnyType)
+                    Console.ForegroundColor = ConsoleColor.Green;
                 else if (isIdentifier)
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
 
                 Console.Write(token.Text);
 
@@ -77,7 +80,7 @@ namespace TSharp
 
             var syntaxTree = SyntaxTree.Parse(text);
 
-            if (syntaxTree.Root.Statement.GetLastToken().IsMissing)
+            if (syntaxTree.Root.Members.Last().GetLastToken().IsMissing)
                 return false;
 
             return true;

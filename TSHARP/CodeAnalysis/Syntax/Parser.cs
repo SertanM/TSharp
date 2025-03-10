@@ -68,11 +68,81 @@ namespace TSharp.CodeAnalysis.Syntax
 
         public CompilationUnitSyntax ParseCompilationUnit()
         {
-            var statement = ParseStatement();
+            var members = ParseMembers();
             var endOfFileToken = MatchToken(SyntaxKind.EndOfFileToken);
-            return new CompilationUnitSyntax(statement, endOfFileToken);
+            return new CompilationUnitSyntax(members, endOfFileToken);
         }
 
+        private ImmutableArray<MemberSyntax> ParseMembers()
+        {
+            var members = ImmutableArray.CreateBuilder<MemberSyntax>();
+
+            while (Current.Kind != SyntaxKind.EndOfFileToken)
+            {
+                var startToken = Current;
+
+                var member = ParseMember();
+                members.Add(member);
+
+                if (Current == startToken)
+                    NextToken();
+            }
+
+            return members.ToImmutable();
+        }
+
+        private MemberSyntax ParseMember()
+        {
+            if (Current.Kind == SyntaxKind.FunctionKeyword)
+                return ParseFunctionDeclaration();
+
+            return ParseGlobalStatement();
+        }
+
+        private MemberSyntax ParseFunctionDeclaration()
+        {
+            var functionKeyword = MatchToken(SyntaxKind.FunctionKeyword);
+            var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            var openParenthesisToken = MatchToken(SyntaxKind.OpenParenthesisToken);
+            var parameters = ParseParameterList();
+            var closeParenthesisToken = MatchToken(SyntaxKind.CloseParenthesisToken);
+            var type = ParseOptionalTypeClause();
+            var body = ParseBlockStatement();
+            return new FunctionDeclarationSyntax(functionKeyword, identifier, openParenthesisToken, parameters, closeParenthesisToken, type, body);
+        }
+
+        private SeperatedSyntaxList<ParameterSyntax> ParseParameterList()
+        {
+            var nodesAndSeparators = ImmutableArray.CreateBuilder<SyntaxNode>();
+
+            while (Current.Kind != SyntaxKind.CloseParenthesisToken
+                && Current.Kind != SyntaxKind.EndOfFileToken)
+            {
+                var parameter = ParseParameter();
+                nodesAndSeparators.Add(parameter);
+
+                if (Current.Kind != SyntaxKind.CloseParenthesisToken)
+                {
+                    var comma = MatchToken(SyntaxKind.CommaToken);
+                    nodesAndSeparators.Add(comma);
+                }
+            }
+
+            return new SeperatedSyntaxList<ParameterSyntax>(nodesAndSeparators.ToImmutable());
+        }
+
+        private ParameterSyntax ParseParameter()
+        {
+            var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            var type = ParseTypeClause();
+            return new ParameterSyntax(identifier, type);
+        }
+
+        private MemberSyntax ParseGlobalStatement()
+        {
+            var statement = ParseStatement();
+            return new GlobalStatementSyntax(statement);
+        }
 
         private StatementSyntax ParseStatement()
         {
@@ -104,7 +174,7 @@ namespace TSharp.CodeAnalysis.Syntax
 
 
             while (Current.Kind != SyntaxKind.CloseBraceToken
-               && Current.Kind != SyntaxKind.EndOfFileToken) 
+                && Current.Kind != SyntaxKind.EndOfFileToken) 
             {
                 var startToken = Current;
 
@@ -112,7 +182,7 @@ namespace TSharp.CodeAnalysis.Syntax
                 var statement = ParseStatement();
                 statements.Add(statement);
 
-                if(Current==startToken)
+                if (Current == startToken)
                     NextToken();
 
             }
@@ -127,9 +197,25 @@ namespace TSharp.CodeAnalysis.Syntax
             var exceptedKind = Current.Kind == SyntaxKind.LetKeyword ? SyntaxKind.LetKeyword : SyntaxKind.VarKeyword;
             var keyword = MatchToken(exceptedKind);
             var identifier = MatchToken(SyntaxKind.IdentifierToken);
-            var equals = MatchToken(SyntaxKind.EqualsToken); // I will make it optional when I add types
+            var typeClause = ParseOptionalTypeClause();
+            var equals = MatchToken(SyntaxKind.EqualsToken);
             var initializer = ParseExpression();
-            return new VariableDeclarationSyntax(keyword, identifier, equals, initializer);
+            return new VariableDeclarationSyntax(keyword, identifier, typeClause, equals, initializer);
+        }
+
+        private TypeClauseSyntax ParseOptionalTypeClause()
+        {
+            if (Current.Kind != SyntaxKind.ColonToken)
+                return null;
+
+            return ParseTypeClause();
+        }
+
+        private TypeClauseSyntax ParseTypeClause()
+        {
+            var colonToken = MatchToken(SyntaxKind.ColonToken);
+            var identifier = MatchToken(SyntaxKind.IdentifierToken);
+            return new TypeClauseSyntax(colonToken, identifier);
         }
 
         private StatementSyntax ParseIfStatement()
@@ -139,6 +225,17 @@ namespace TSharp.CodeAnalysis.Syntax
             var thenStatement = ParseStatement();
             var elseClause = ParseOptionalElseStatement(); 
             return new IfStatementSyntax(ifKeyword, condition, thenStatement, elseClause);
+        }
+
+        private ElseClauseSyntax ParseOptionalElseStatement()
+        {
+            if (Current.Kind != SyntaxKind.ElseKeyword)
+                return null;
+
+            var elseKeyword = MatchToken(SyntaxKind.ElseKeyword);
+            var statement = ParseStatement();
+
+            return new ElseClauseSyntax(elseKeyword, statement);
         }
 
         private StatementSyntax ParseForStatement()
@@ -162,16 +259,7 @@ namespace TSharp.CodeAnalysis.Syntax
             return new WhileStatementSyntax(whileKeyword, condition, statement);
         }
 
-        private ElseClauseSyntax ParseOptionalElseStatement()
-        {
-            if(Current.Kind != SyntaxKind.ElseKeyword)
-                return null;
-
-            var elseKeyword = MatchToken(SyntaxKind.ElseKeyword);
-            var statement = ParseStatement();
-
-            return new ElseClauseSyntax(elseKeyword, statement);
-        }
+        
 
         private ExpressionStatementSyntax ParseExpressionStatement()
         {
@@ -182,7 +270,6 @@ namespace TSharp.CodeAnalysis.Syntax
         private ExpressionSyntax ParseExpression()
                               => ParseAssignmentExpression();
         
-
         private ExpressionSyntax ParseAssignmentExpression()
         {
             if(Peek(0).Kind == SyntaxKind.IdentifierToken
@@ -228,9 +315,6 @@ namespace TSharp.CodeAnalysis.Syntax
             return left;
         }
 
-        
-
-        
         private ExpressionSyntax ParsePrimaryExpression()
         {
             switch (Current.Kind)
@@ -253,8 +337,6 @@ namespace TSharp.CodeAnalysis.Syntax
                     return ParseNameOrCallExpression();
             }
         }
-
-        
 
         private ExpressionSyntax ParseParenthesizedExpression()
         {

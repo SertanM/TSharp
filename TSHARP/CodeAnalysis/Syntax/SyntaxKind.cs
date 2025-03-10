@@ -26,9 +26,10 @@ namespace TSharp.CodeAnalysis.Syntax
         CloseParenthesisToken,
         OpenBraceToken,
         CloseBraceToken,
+        ColonToken,
+        CommaToken,
         IdentifierToken,
         EqualsToken,
-        CommaToken,
 
         //Keyword
         TrueKeyword,
@@ -40,19 +41,24 @@ namespace TSharp.CodeAnalysis.Syntax
         ForKeyword,
         ToKeyword,
         WhileKeyword,
+        FunctionKeyword,
 
         //Nodes
         CompilationUnit,
+        Parameter,
+        ElseClause,
+        TypeClause,
+
 
         //Statements
         BlockStatement,
         IfStatement,
-        ElseClause,
         ForStatement,
         WhileStatement,
         ExpressionStatement,
         VariableDeclaration,
-
+        FunctionDeclaration,
+        GlobalStatement,
 
         //Expressions
         LiteralExpression,

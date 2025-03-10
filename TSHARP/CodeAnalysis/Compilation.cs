@@ -47,16 +47,19 @@ namespace TSharp.CodeAnalysis
         
         public EvaluationResult Evaluate(Dictionary<VariableSymbol, object> variables)
         {
-            var globalScope = GlobalScope;
-
-            var diagnostics = SyntaxTree.Diagnostics.Concat(globalScope.Diagnostics).ToImmutableArray();
+            var diagnostics = SyntaxTree.Diagnostics.Concat(GlobalScope.Diagnostics).ToImmutableArray();
 
             if(diagnostics.Any())
                 return new EvaluationResult(diagnostics, null);
 
+            var program = Binder.BindProgram(GlobalScope);
+            if (program.Diagnostics.Any())
+                return new EvaluationResult(program.Diagnostics.ToImmutableArray(), null);
+
+
 
             var statement = GetStatement();
-            var evaluator = new Evaluator(statement, variables);
+            var evaluator = new Evaluator(program.FunctionBodies, statement, variables);
             var value = evaluator.Evaluate();
             return new EvaluationResult(ImmutableArray<Diagnostic>.Empty, value);
         }

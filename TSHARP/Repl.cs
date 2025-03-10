@@ -4,8 +4,7 @@ using System.Text;
 
 namespace TSharp
 {
-    // I will delete that L0L
-
+    // I will delete that in unity version :D
     internal abstract class Repl
     {
         private List<string> _submissionHistory = new List<string>();
@@ -372,7 +371,7 @@ namespace TSharp
         private void UpdateDocumentFromHistory(ObservableCollection<string> document, SubmissionView view)
         {
             document.Clear();
-
+            // I think that have some errors but I am an unity user not an code editor user LoL
             var historyItem = _submissionHistory[_submissionHistoryIndex];
             var lines = historyItem.Split(Environment.NewLine);
             
