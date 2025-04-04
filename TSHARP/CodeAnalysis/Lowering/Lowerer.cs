@@ -107,7 +107,7 @@ namespace TSharp.CodeAnalysis.Lowering
             var condition = new BoundBinaryExpression
                 (
                     variableExpression,
-                    BoundBinaryOperator.Bind(SyntaxKind.NotEqualsToken, TypeSymbol.Int, TypeSymbol.Int),
+                    BoundBinaryOperator.Bind(SyntaxKind.SmallerToken, TypeSymbol.Int, TypeSymbol.Int),
                     node.TargetExpression
                 );
 
