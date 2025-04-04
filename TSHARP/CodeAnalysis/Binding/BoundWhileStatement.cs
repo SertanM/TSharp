@@ -1,8 +1,9 @@
 ﻿namespace TSharp.CodeAnalysis.Binding
 {
-    internal sealed class BoundWhileStatement : BoundStatement
+    internal sealed class BoundWhileStatement : BoundLoopStatement
     {
-        public BoundWhileStatement(BoundExpression condition, BoundStatement statement)
+        public BoundWhileStatement(BoundExpression condition, BoundStatement statement, BoundLabel breakLabel, BoundLabel continueLabel) 
+            : base(breakLabel, continueLabel)
         {
             Condition = condition;
             Statement = statement;

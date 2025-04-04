@@ -122,9 +122,28 @@ namespace TSharp.CodeAnalysis
             Report(span, message);
         }
 
-        public void XXX_ReportFunctionsAreUnsupported(TextSpan span)
+        public void ReportInvalidBreakOrContinue(TextSpan span, string keyword)
         {
-            var message = "Functions with type aren't supported yet";
+            var message = $"The '{keyword}' keyword can only be used inside of loops";
+            Report(span, message);
+        }
+
+        
+        public void ReportInvalidReturn(TextSpan span)
+        {
+            var message = "The 'return' keyword can only be used inside of functions";
+            Report(span, message);
+        }
+
+        public void ReportInvalidReturnExpression(TextSpan span, string funcName)
+        {
+            var message = $"Since the function '{funcName}' does not return a value with 'return' keyword cannot be followed by an expression";
+            Report(span, message);
+        }
+
+        public void ReportMissingReturnExpression(TextSpan span, TypeSymbol returnType)
+        {
+            var message = $"An expression of type '{returnType}' expected.";
             Report(span, message);
         }
     }

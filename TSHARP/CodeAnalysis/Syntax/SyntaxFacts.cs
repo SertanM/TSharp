@@ -11,7 +11,6 @@
                 case SyntaxKind.NotToken:
                     return 6;
 
-
                 default:
                     return 0;
             }
@@ -69,8 +68,14 @@
                     return SyntaxKind.ToKeyword;
                 case "while":
                     return SyntaxKind.WhileKeyword;
+                case "continue":
+                    return SyntaxKind.ContinueKeyword;
+                case "break":
+                    return SyntaxKind.BreakKeyword;
                 case "func":
                     return SyntaxKind.FunctionKeyword;
+                case "return":
+                    return SyntaxKind.ReturnKeyword;
                 default:
                     return SyntaxKind.IdentifierToken;
             }
@@ -132,8 +137,14 @@
                     return "to";
                 case SyntaxKind.WhileKeyword:
                     return "while";
+                case SyntaxKind.BreakKeyword:
+                    return "break";
+                case SyntaxKind.ContinueKeyword:
+                    return "continue";
                 case SyntaxKind.FunctionKeyword:
                     return "func";
+                case SyntaxKind.ReturnKeyword:
+                    return "return";
                 default:
                     return null;
             }

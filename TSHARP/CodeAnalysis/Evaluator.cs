@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Immutable;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Immutable;
 using TSharp.CodeAnalysis.Binding;
 using TSharp.CodeAnalysis.Symbols;
 
@@ -28,7 +25,6 @@ namespace TSharp.CodeAnalysis
         public object Evaluate()
             => EvaluateStatement(_root);
         
-
         private object EvaluateStatement(BoundBlockStatement body)
         {
             var labelToIndex = new Dictionary<BoundLabel, int>();
@@ -71,6 +67,10 @@ namespace TSharp.CodeAnalysis
                         else
                             index++;
                         break;
+                    case BoundNodeKind.ReturnStatement:
+                        var rs = (BoundReturnStatement)s;
+                        _lastValue = rs.Expression == null ? null : EvaluateExpression(rs.Expression);
+                        return _lastValue;
                     default:
                         throw new Exception($"Unexcepted expression {s.Kind}");
                 }

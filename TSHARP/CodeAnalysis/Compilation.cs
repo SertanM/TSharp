@@ -4,7 +4,6 @@ using TSharp.CodeAnalysis.Lowering;
 using TSharp.CodeAnalysis.Symbols;
 using TSharp.CodeAnalysis.Syntax;
 
-
 namespace TSharp.CodeAnalysis
 {
     public sealed class Compilation

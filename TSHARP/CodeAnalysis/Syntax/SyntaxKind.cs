@@ -36,19 +36,21 @@ namespace TSharp.CodeAnalysis.Syntax
         FalseKeyword,
         VarKeyword,
         LetKeyword,
+        ContinueKeyword,
+        BreakKeyword,
         IfKeyword,
         ElseKeyword,
         ForKeyword,
         ToKeyword,
         WhileKeyword,
         FunctionKeyword,
+        ReturnKeyword,
 
         //Nodes
         CompilationUnit,
         Parameter,
         ElseClause,
         TypeClause,
-
 
         //Statements
         BlockStatement,
@@ -59,6 +61,9 @@ namespace TSharp.CodeAnalysis.Syntax
         VariableDeclaration,
         FunctionDeclaration,
         GlobalStatement,
+        BreakStatement,
+        ContinueStatement,
+        ReturnStatement,
 
         //Expressions
         LiteralExpression,

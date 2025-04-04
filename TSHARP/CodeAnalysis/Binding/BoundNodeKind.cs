@@ -22,6 +22,7 @@
         VariableExpression,
         CallExpression,
         ErrorExpression,
-        ConversionExpression
+        ConversionExpression,
+        ReturnStatement
     }
 }

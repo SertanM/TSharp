@@ -49,7 +49,6 @@ namespace TSharp.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.EqualOreBiggerToken, BoundBinaryOperatorKind.EqualOreBigger, TypeSymbol.Int, TypeSymbol.Bool),
             new BoundBinaryOperator(SyntaxKind.EqualOreSmallerToken, BoundBinaryOperatorKind.EqualOreSmaller, TypeSymbol.Int, TypeSymbol.Bool),
             
-
             new BoundBinaryOperator(SyntaxKind.EqualsEqualsToken, BoundBinaryOperatorKind.Equals, TypeSymbol.Bool),
             new BoundBinaryOperator(SyntaxKind.NotEqualsToken, BoundBinaryOperatorKind.NotEquals, TypeSymbol.Bool)
         };

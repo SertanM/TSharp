@@ -10,6 +10,8 @@ namespace TSharp.CodeAnalysis.Binding
     {
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private readonly FunctionSymbol _function;
+
+        private Stack<(BoundLabel BreakLabel, BoundLabel ContinueLabel)> _loopStack = new();
         private BoundScope _scope;
 
         public Binder(BoundScope parent, FunctionSymbol function)
@@ -103,9 +105,7 @@ namespace TSharp.CodeAnalysis.Binding
             }
 
             var type = BindTypeClause(syntax.Type) ?? TypeSymbol.Void;
-            if (type != TypeSymbol.Void)
-                _diagnostics.XXX_ReportFunctionsAreUnsupported(syntax.Type.Span);
-
+            
             var function = new FunctionSymbol(syntax.Identifier.Text, parameters.ToImmutable(), type, syntax);
             if (!_scope.TryDeclareFunction(function))
                 _diagnostics.ReportSymbolAlreadyDeclared(syntax.Identifier.Span, function.Name);
@@ -148,6 +148,10 @@ namespace TSharp.CodeAnalysis.Binding
         }
         public DiagnosticBag Diagnostics => _diagnostics;
 
+        private BoundStatement BindErrorStatement()
+        {
+            return new BoundExpressionStatement(new BoundErrorExpression());
+        }
 
         private BoundStatement BindStatement(StatementSyntax syntax)
         {
@@ -165,25 +169,17 @@ namespace TSharp.CodeAnalysis.Binding
                     return BindWhileStatement((WhileStatementSyntax)syntax);
                 case SyntaxKind.ForStatement:
                     return BindForStatement((ForStatementSyntax)syntax);
+                case SyntaxKind.BreakStatement:
+                    return BindBreakStatement((BreakStatementSyntax)syntax);
+                case SyntaxKind.ContinueStatement:
+                    return BindContinueStatement((ContinueStatementSyntax)syntax);
+                case SyntaxKind.ReturnStatement:
+                    return BindReturnStatement((ReturnStatementSyntax)syntax);
                 default:
                     throw new Exception($"Unexcepted syntax {syntax.Kind}");
             }
         }
-        private BoundStatement BindForStatement(ForStatementSyntax syntax)
-        {
-            var startValue = BindExpression(syntax.StartValue, TypeSymbol.Int);
 
-            _scope = new BoundScope(_scope);
-
-            VariableSymbol variable = BindVariable(syntax.IdentifierToken, true, TypeSymbol.Int);
-
-            var targetValue = BindExpression(syntax.TargetValue, TypeSymbol.Int);
-            var body = BindStatement(syntax.Body);
-
-            _scope = _scope.Parent;
-
-            return new BoundForStatement(variable, startValue, targetValue, body);
-        }
         private BoundStatement BindBlockStatement(BlockStatementSyntax syntax)
         {
             var statements = ImmutableArray.CreateBuilder<BoundStatement>();
@@ -239,11 +235,89 @@ namespace TSharp.CodeAnalysis.Binding
         private BoundStatement BindWhileStatement(WhileStatementSyntax syntax)
         {
             var condition = BindExpression(syntax.Condition, TypeSymbol.Bool);
-            var statement = BindStatement(syntax.Statement);
+            var statement = BindLoopBody(syntax.Statement, out var breakLabel, out var continueLabel);
 
-            return new BoundWhileStatement(condition, statement);
+            return new BoundWhileStatement(condition, statement, breakLabel, continueLabel);
         }
 
+        private BoundStatement BindForStatement(ForStatementSyntax syntax)
+        {
+            var startValue = BindExpression(syntax.StartValue, TypeSymbol.Int);
+
+            _scope = new BoundScope(_scope);
+
+            VariableSymbol variable = BindVariable(syntax.IdentifierToken, true, TypeSymbol.Int);
+
+            var targetValue = BindExpression(syntax.TargetValue, TypeSymbol.Int);
+            var body = BindLoopBody(syntax.Body, out var breakLabel, out var continueLabel);
+
+            _scope = _scope.Parent;
+
+            return new BoundForStatement(variable, startValue, targetValue, body, breakLabel, continueLabel);
+        }
+
+        private BoundStatement BindLoopBody(StatementSyntax statement, out BoundLabel breakLabel, out BoundLabel continueLabel)
+        {
+            breakLabel = new BoundLabel("break");
+            continueLabel = new BoundLabel("continue");
+
+            _loopStack.Push((breakLabel, continueLabel));
+            var boundBody = BindStatement(statement);
+            _loopStack.Pop();
+
+            return boundBody;
+        }
+
+        private BoundStatement BindBreakStatement(BreakStatementSyntax syntax)
+        {
+            if (_loopStack.Count == 0)
+            {
+                _diagnostics.ReportInvalidBreakOrContinue(syntax.Keyword.Span, syntax.Keyword.Text);
+                return BindErrorStatement();
+            }
+
+            var breakLabel = _loopStack.Peek().BreakLabel;
+
+            return new BoundGotoStatement(breakLabel);
+        }
+        private BoundStatement BindContinueStatement(ContinueStatementSyntax syntax)
+        {
+            if (_loopStack.Count == 0)
+            {
+                _diagnostics.ReportInvalidBreakOrContinue(syntax.Keyword.Span, syntax.Keyword.Text);
+                return BindErrorStatement();
+            }
+
+            var continueLabel = _loopStack.Peek().ContinueLabel;
+            return new BoundGotoStatement(continueLabel);
+        }
+
+        private BoundStatement BindReturnStatement(ReturnStatementSyntax syntax)
+        {
+            var expression = syntax.Expression == null ? null : BindExpression(syntax.Expression);
+
+            if (_function == null)
+            {
+                _diagnostics.ReportInvalidReturn(syntax.ReturnKeyword.Span);
+            }
+            else
+            {
+                if (_function.Type == TypeSymbol.Void)
+                {
+                    if (expression != null)
+                        _diagnostics.ReportInvalidReturnExpression(syntax.Expression.Span, _function.Name);
+                }
+                else
+                {
+                    if (expression == null)
+                        _diagnostics.ReportMissingReturnExpression(syntax.ReturnKeyword.Span, _function.Type);
+                    else
+                        expression = BindConversion(syntax.Expression.Span, expression, _function.Type);
+                }   
+            }
+
+            return new BoundReturnStatement(expression);
+        }
 
         private BoundExpression BindExpression(ExpressionSyntax syntax, TypeSymbol targetType) => BindConversion(syntax, targetType);
 
@@ -251,6 +325,7 @@ namespace TSharp.CodeAnalysis.Binding
         private BoundExpression BindExpression(ExpressionSyntax syntax, bool canBeVoid = false)
         {
             var result = BindExpressionInternal(syntax);
+
             if (!canBeVoid && result.Type == TypeSymbol.Void)
             {
                 _diagnostics.ReportExpressionMustHaveValue(syntax.Span);

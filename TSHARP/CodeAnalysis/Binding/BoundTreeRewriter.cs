@@ -24,6 +24,8 @@ namespace TSharp.CodeAnalysis.Binding
                     return RewriteGotoStatement((BoundGotoStatement)node);
                 case BoundNodeKind.ConditionalGotoStatement:
                     return RewriteConditionalGotoStatement((BoundConditionalGotoStatement)node);
+                case BoundNodeKind.ReturnStatement:
+                    return RewriteReturnStatement((BoundReturnStatement)node);
                 case BoundNodeKind.ExpressionStatement:
                     return RewriteExpressionStatement((BoundExpressionStatement)node);
                 default:
@@ -92,7 +94,7 @@ namespace TSharp.CodeAnalysis.Binding
             if(startBound == node.StartExpression && targetBound == node.TargetExpression && body == node.Body)
                 return node;
 
-            return new BoundForStatement(node.Variable, startBound, targetBound, body);
+            return new BoundForStatement(node.Variable, startBound, targetBound, body, node.BreakLabel, node.ContinueLabel);
         }
 
         protected virtual BoundStatement RewriteWhileStatement(BoundWhileStatement node)
@@ -103,7 +105,7 @@ namespace TSharp.CodeAnalysis.Binding
             if(condition == node.Condition && body == node.Statement)
                 return node;
 
-            return new BoundWhileStatement(condition, body);
+            return new BoundWhileStatement(condition, body, node.BreakLabel, node.ContinueLabel);
         }
 
         private BoundStatement RewriteLabelStatement(BoundLabelStatement node)
@@ -123,6 +125,15 @@ namespace TSharp.CodeAnalysis.Binding
                 return node;
 
             return new BoundConditionalGotoStatement(node.Label, condition, node.JumpIfFalse);
+        }
+
+        protected virtual BoundStatement RewriteReturnStatement(BoundReturnStatement node)
+        {
+            var expression = RewriteExpression(node.Expression);
+            if (expression == node.Expression)
+                return node;
+
+            return new BoundReturnStatement(expression);
         }
 
         protected virtual BoundStatement RewriteExpressionStatement(BoundExpressionStatement node)
