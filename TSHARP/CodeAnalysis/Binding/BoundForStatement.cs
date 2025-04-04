@@ -11,13 +11,9 @@ namespace TSharp.CodeAnalysis.Binding
             StartExpression = startExpression;
             TargetExpression = targetExpression;
             Body = body;
-            // +: Think T think about what will you have 500 years from now?
-            // -: Your mom
         }
 
-
         public override BoundNodeKind Kind => BoundNodeKind.ForStatement;
-
         public VariableSymbol Variable { get; }
         public BoundExpression StartExpression { get; }
         public BoundExpression TargetExpression { get; }

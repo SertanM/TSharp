@@ -58,12 +58,15 @@ namespace TSharp
                 Console.CursorVisible = false;
 
                 var lineCount = 0;
-                
-                foreach(var line in _submissionDocument)
+
+                foreach (var line in _submissionDocument)
                 {
                     int cursorPos = _cursorTop + lineCount;
-                    if (cursorPos < Console.BufferHeight)
-                        Console.SetCursorPosition(0, _cursorTop + lineCount);
+                    if (cursorPos >= 0 && cursorPos < Console.BufferHeight)
+                    {
+                        Console.SetCursorPosition(0, cursorPos);
+                    }
+
                     Console.ForegroundColor = ConsoleColor.Green;
 
                     if (lineCount == 0)
@@ -72,20 +75,28 @@ namespace TSharp
                         Console.Write(": ");
 
                     Console.ResetColor();
+
                     _lineRendered(line);
-                    Console.WriteLine(new String(' ', Console.WindowWidth - line.Length));
+
+                    int spaceCount = Math.Max(0, Console.WindowWidth - line.Length);
+                    Console.WriteLine(new string(' ', spaceCount));
+
                     lineCount++;
                 }
 
                 var numberOfBlankLines = _renderedLineCount - lineCount;
                 if (numberOfBlankLines > 0)
                 {
-                    var blankLine = new String(' ', Console.WindowWidth);
-                    
-                    for(var i = 0; i < numberOfBlankLines; i++)
+                    var blankLine = new string(' ', Console.WindowWidth);
+
+                    for (var i = 0; i < numberOfBlankLines; i++)
                     {
-                        Console.SetCursorPosition(0, _cursorTop + lineCount + i);
-                        Console.WriteLine(blankLine);
+                        int cursorPos = _cursorTop + lineCount + i;
+                        if (cursorPos >= 0 && cursorPos < Console.BufferHeight)
+                        {
+                            Console.SetCursorPosition(0, cursorPos);
+                            Console.WriteLine(blankLine);
+                        }
                     }
                 }
 
@@ -97,11 +108,16 @@ namespace TSharp
 
             private void UpdateCursorPosition()
             {
-                int newPos = _cursorTop + CurrentLine;
-                if(newPos < Console.BufferHeight)
-                    Console.CursorTop = _cursorTop + CurrentLine;
-                Console.CursorLeft = 2 + _currentCharacter;
+                int newTop = _cursorTop + CurrentLine;
+                int newLeft = 2 + _currentCharacter;
+
+                newTop = Math.Max(0, Math.Min(newTop, Console.BufferHeight - 1));
+                newLeft = Math.Max(0, Math.Min(newLeft, Console.BufferWidth - 1));
+
+                Console.CursorTop = newTop;
+                Console.CursorLeft = newLeft;
             }
+
 
             private int _currentCharacter;
             private int _currentLine;
@@ -371,6 +387,9 @@ namespace TSharp
 
         private void UpdateDocumentFromHistory(ObservableCollection<string> document, SubmissionView view)
         {
+            if (_submissionHistory.Count == 0)
+                return;
+
             document.Clear();
             // I think that have some errors but I am an unity user not an code editor user LoL
             var historyItem = _submissionHistory[_submissionHistoryIndex];
