@@ -14,10 +14,9 @@ namespace TSharp
             repl.Run();
         }
 
-        // I want to make it more than it
-        // But I am gonna using only console to do this project
-        // Because I realy don't want to deal with repl
-        // Yeah I hate Repl
+        // I want to make it more than a basic console project
+        // But I realy don't want to deal with VS Code or any code IDE
+        
 
         //private static void Main(string[] args) 
         //{

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Immutable;
 using TSharp.CodeAnalysis.Binding;
 using TSharp.CodeAnalysis.Symbols;
+using TSHARP.CodeAnalysis;
 
 
 namespace TSharp.CodeAnalysis
@@ -13,7 +14,7 @@ namespace TSharp.CodeAnalysis
         private readonly Stack<Dictionary<VariableSymbol, object>> _locals = new Stack<Dictionary<VariableSymbol, object>>();
         private object _lastValue;
         private Random _random = null;
-
+        private WindowController _windowController = null;
 
         public Evaluator(ImmutableDictionary<FunctionSymbol,BoundBlockStatement> functionBodies, BoundBlockStatement root, Dictionary<VariableSymbol, object> variables)
         {
@@ -133,7 +134,6 @@ namespace TSharp.CodeAnalysis
             return value;
         }
 
-
         private object EvaluateUnaryExpression(BoundUnaryExpression u)
         {
             var operand = EvaluateExpression(u.Operand);
@@ -203,10 +203,59 @@ namespace TSharp.CodeAnalysis
             }
             else if (node.Function == BuildInFunctions.Random)
             {
-                var max = (int)EvaluateExpression(node.Arguments[0])!;
+                var max = (int)EvaluateExpression(node.Arguments[0]);
                 _random = _random ?? new Random();
 
                 return _random.Next(max);
+            }
+            else if (node.Function == BuildInFunctions.CloseWin)
+            {
+                if (_windowController == null)
+                    return null;
+
+                _windowController.CloseWin();
+
+                return null;
+            }
+            else if (node.Function == BuildInFunctions.Render)
+            {
+                if (_windowController == null)
+                    return null;
+
+                _windowController.Render();
+
+                return null;
+            }
+            else if (node.Function == BuildInFunctions.IsWinClosed)
+            {
+                if (_windowController == null)
+                    return true;
+
+                return _windowController.IsWinClose();
+            }
+            else if (node.Function == BuildInFunctions.CreateWindow)
+            {
+                var width = (int)EvaluateExpression(node.Arguments[0]);
+                var height = (int)EvaluateExpression(node.Arguments[1]);
+                var name = (string)EvaluateExpression(node.Arguments[2]);
+                _windowController = new WindowController(width, height, name);
+
+                return null;
+            }
+            else if (node.Function == BuildInFunctions.SetPixel)
+            {
+                if (_windowController == null)
+                    return null;
+
+                var x = (int)EvaluateExpression(node.Arguments[0]);
+                var y = (int)EvaluateExpression(node.Arguments[1]);
+                var R = (int)EvaluateExpression(node.Arguments[2]);
+                var G = (int)EvaluateExpression(node.Arguments[3]);
+                var B = (int)EvaluateExpression(node.Arguments[4]);
+
+                _windowController.SetAPixel(x, y, R, G, B);
+
+                return null;
             }
             else
             {

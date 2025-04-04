@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5VHZN/6+Mno=",
+  "dgSpecHash": "uzUhf6SUDRs=",
   "success": true,
   "projectFilePath": "C:\\Users\\serta\\Belgeler\\Projects\\Github\\TSharp\\TSHARP\\TSHARP.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\serta\\.nuget\\packages\\raylib-cs\\7.0.1\\raylib-cs.7.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
